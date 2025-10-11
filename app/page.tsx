@@ -1,7 +1,7 @@
 "use client";
 
 import { ChevronDownIcon } from "lucide-react";
-import React, { useState } from "react";
+import React from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -128,8 +128,6 @@ const resourceLinks = [
 ];
 
 export default function Home() {
-  const [isProfileOpen, setIsProfileOpen] = useState(false);
-
   return (
     <div className="bg-white w-full min-w-[1440px] flex flex-col">
       <header className="w-full bg-[#3f2c77] h-12 flex items-center justify-between px-[103px]">
@@ -141,14 +139,14 @@ export default function Home() {
         <div className="text-white text-xs [font-family:'Poppins',Helvetica] font-normal">
           info@hotelire.ca
         </div>
-        <DropdownMenu open={isProfileOpen} onOpenChange={setIsProfileOpen}>
+        <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <div className="flex items-center gap-2 cursor-pointer">
+            <button className="flex items-center gap-2 cursor-pointer bg-transparent border-none outline-none">
               <img className="w-8 h-8" alt="User" src="/figmaAssets/image.png" />
               <div className="text-[#febc11] text-[13px] [font-family:'Poppins',Helvetica] font-bold">
                 Allison
               </div>
-            </div>
+            </button>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-[131px] bg-[#f5f6fdf0] rounded-[0px_0px_4px_4px] p-4 shadow-md">
             <DropdownMenuItem className="[font-family:'Poppins',Helvetica] font-medium text-[#3f2c77] text-[11px] leading-[30px] cursor-pointer">
