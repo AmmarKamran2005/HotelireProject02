@@ -35,3 +35,17 @@ export interface SearchParams {
   children: number;
   rooms: number;
 }
+
+export interface Listing {
+  id: string;
+  name: string;
+  location: string;
+  type: string;
+  rating: string;
+  reviews: string;
+  image: string;
+  stars: string;
+  price: string;
+  amenities: string[];
+  description: string;
+}
