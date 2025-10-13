@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,15 +11,49 @@ import {
 export function Header() {
   return (
     <header className="w-full bg-[#3f2c77] h-12 flex items-center justify-between px-4 md:px-8 lg:px-[103px]">
-      <Link href="/">
-        <Image
-          src="/figmaAssets/screenshot-2025-08-22-at-1-02-21-pm-1.png"
-          alt="Hotel Logo"
-          width={111}
-          height={37}
-          className="w-[80px] h-[27px] md:w-[111px] md:h-[37px] bg-blend-multiply object-cover"
-        />
-      </Link>
+      <div className="flex items-center gap-4">
+        <Link href="/">
+          <Image
+            src="/figmaAssets/screenshot-2025-08-22-at-1-02-21-pm-1.png"
+            alt="Hotel Logo"
+            width={111}
+            height={37}
+            className="w-[80px] h-[27px] md:w-[111px] md:h-[37px] bg-blend-multiply object-cover"
+          />
+        </Link>
+        <div className="hidden lg:flex items-center gap-3 ml-4">
+          <a
+            href="https://facebook.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white hover:text-[#febc11] transition-colors duration-200"
+            aria-label="Facebook"
+            data-testid="link-facebook"
+          >
+            <FaFacebookF size={14} />
+          </a>
+          <a
+            href="https://twitter.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white hover:text-[#febc11] transition-colors duration-200"
+            aria-label="Twitter"
+            data-testid="link-twitter"
+          >
+            <FaTwitter size={14} />
+          </a>
+          <a
+            href="https://instagram.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white hover:text-[#febc11] transition-colors duration-200"
+            aria-label="Instagram"
+            data-testid="link-instagram"
+          >
+            <FaInstagram size={14} />
+          </a>
+        </div>
+      </div>
       <a
         href="mailto:info@hotelire.ca"
         className="text-white text-xs [font-family:'Poppins',Helvetica] font-normal hidden md:block hover:text-[#febc11] transition-colors duration-200"

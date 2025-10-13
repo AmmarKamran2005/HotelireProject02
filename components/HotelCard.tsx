@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { Heart } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Hotel } from "@/types";
 
@@ -10,16 +13,27 @@ interface HotelCardProps {
 export function HotelCard({ hotel }: HotelCardProps) {
   return (
     <Link href={`/hotels/${hotel.id}`} prefetch={false}>
-      <Card className="overflow-hidden border-0 shadow-none bg-transparent cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-lg group">
+      <Card className="overflow-hidden border-0 shadow-none bg-transparent cursor-pointer transition-all duration-300 hover:shadow-[0px_8px_24px_rgba(63,44,119,0.15)] group">
         <CardContent className="p-0 flex flex-col h-full">
           <div className="relative w-full h-[250px] md:h-[280px] lg:h-[308px] rounded-[5px] overflow-hidden">
             <Image
               src={hotel.image}
               alt={hotel.name}
               fill
-              className="object-cover transition-transform duration-300 group-hover:scale-105"
+              className="object-cover"
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
             />
+            <button
+              className="absolute top-3 left-3 w-8 h-8 bg-white/90 rounded-full flex items-center justify-center transition-all duration-200 hover:bg-white hover:scale-110 z-10"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+              }}
+              aria-label="Add to wishlist"
+              data-testid={`button-wishlist-${hotel.id}`}
+            >
+              <Heart className="w-4 h-4 text-[#3f2c77] transition-colors duration-200 hover:fill-[#3f2c77]" />
+            </button>
           </div>
           <div className="mt-4 flex-1 flex flex-col">
             <p className="[font-family:'Inter',Helvetica] font-medium text-[#5f5f5f] text-sm md:text-base mb-2">

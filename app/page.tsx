@@ -1,23 +1,15 @@
-"use client";
-
-import { useState } from "react";
 import Image from "next/image";
-import { ChevronDownIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Header } from "@/components/Header";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
+import { SearchBar } from "@/components/SearchBar";
 import { DestinationCard } from "@/components/DestinationCard";
 import { HotelCard } from "@/components/HotelCard";
 import { PropertyCard } from "@/components/PropertyCard";
 import { destinations, popularHotels, uniqueProperties } from "@/lib/data";
 
 export default function Home() {
-  const [location, setLocation] = useState("");
-  const [checkInOut, setCheckInOut] = useState("May 05 - June 14");
-  const [guests, setGuests] = useState("2 adults - 1 children - 1 room");
-
   return (
     <div className="bg-white w-full flex flex-col">
       <Header />
@@ -46,60 +38,7 @@ export default function Home() {
             </h2>
           </div>
 
-          {/* Search Bar */}
-          <div className="w-full max-w-[1240px] bg-white rounded flex flex-col md:flex-row items-stretch">
-            <div className="flex-1 px-4 md:px-[33px] py-3 md:py-0 md:border-r border-[#e5e5e5] flex flex-col justify-center">
-              <label htmlFor="location" className="[font-family:'Poppins',Helvetica] font-semibold text-[#3f2c77] text-[13px] md:text-[15px] mb-1">
-                Location
-              </label>
-              <Input
-                id="location"
-                type="text"
-                value={location}
-                onChange={(e) => setLocation(e.target.value)}
-                placeholder="Where are you going?"
-                className="[font-family:'Poppins',Helvetica] font-normal text-[#919191] text-[12px] md:text-[13px] border-0 p-0 h-auto focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-[#919191]"
-              />
-            </div>
-
-            <div className="flex-1 px-4 md:px-6 py-3 md:py-0 md:border-r border-[#e5e5e5] relative flex flex-col justify-center">
-              <label htmlFor="checkInOut" className="[font-family:'Poppins',Helvetica] font-semibold text-[#3f2c77] text-[13px] md:text-[15px] mb-1">
-                Check in - Check out
-              </label>
-              <Input
-                id="checkInOut"
-                type="text"
-                value={checkInOut}
-                onChange={(e) => setCheckInOut(e.target.value)}
-                className="[font-family:'Poppins',Helvetica] font-normal text-[#919191] text-[12px] md:text-[13px] border-0 p-0 h-auto focus-visible:ring-0 focus-visible:ring-offset-0"
-              />
-              <ChevronDownIcon className="absolute right-4 md:right-6 top-1/2 -translate-y-1/2 w-3.5 h-2" aria-hidden="true" />
-            </div>
-
-            <div className="flex-1 px-4 md:px-6 py-3 md:py-0 relative flex flex-col justify-center">
-              <label htmlFor="guests" className="[font-family:'Poppins',Helvetica] font-semibold text-[#3f2c77] text-[13px] md:text-[15px] mb-1">
-                Guest
-              </label>
-              <Input
-                id="guests"
-                type="text"
-                value={guests}
-                onChange={(e) => setGuests(e.target.value)}
-                className="[font-family:'Poppins',Helvetica] font-normal text-[#919191] text-[12px] md:text-[13px] border-0 p-0 h-auto focus-visible:ring-0 focus-visible:ring-offset-0"
-              />
-              <ChevronDownIcon className="absolute right-4 md:right-6 top-1/2 -translate-y-1/2 w-3.5 h-2" aria-hidden="true" />
-            </div>
-
-            <Button className="w-full md:w-20 lg:w-24 h-[60px] md:h-[75px] bg-[#febc11] rounded-[0px_0px_4px_4px] md:rounded-[0px_4px_4px_0px] transition-all duration-200 hover:bg-[#febc11]/90 hover:shadow-lg" aria-label="Search hotels">
-              <Image
-                src="/figmaAssets/group.png"
-                alt=""
-                width={30}
-                height={30}
-                className="w-[25px] h-[25px] md:w-[30px] md:h-[30px]"
-              />
-            </Button>
-          </div>
+          <SearchBar />
         </div>
       </section>
 
