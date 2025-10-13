@@ -25,7 +25,7 @@ export function Navigation() {
           <span>DESTINATIONS</span>
           <ChevronDownIcon className="w-[13px] h-2" aria-hidden="true" />
         </Link>
-        <Link href="/search" prefetch={false} className="cursor-pointer hover:text-[#3f2c77] transition-colors duration-200">
+        <Link href="/listing" prefetch={false} className="cursor-pointer hover:text-[#3f2c77] transition-colors duration-200">
           SEARCH
         </Link>
         <Link href="/blog" prefetch={false} className="cursor-pointer hover:text-[#3f2c77] transition-colors duration-200">

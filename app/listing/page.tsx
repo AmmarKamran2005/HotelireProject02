@@ -32,10 +32,26 @@ export default function ListingPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
-  const totalPages = Math.ceil(listings.length / itemsPerPage);
+  // Sort listings based on selected option
+  const sortedListings = [...listings].sort((a, b) => {
+    switch (sortBy) {
+      case "price-low":
+        return parseInt(a.price.replace(/[^0-9]/g, "")) - parseInt(b.price.replace(/[^0-9]/g, ""));
+      case "price-high":
+        return parseInt(b.price.replace(/[^0-9]/g, "")) - parseInt(a.price.replace(/[^0-9]/g, ""));
+      case "rating":
+        return parseFloat(b.rating) - parseFloat(a.rating);
+      case "stars":
+        return parseFloat(b.rating) - parseFloat(a.rating);
+      default:
+        return 0; // recommended - keep original order
+    }
+  });
+
+  const totalPages = Math.ceil(sortedListings.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const currentListings = listings.slice(startIndex, endIndex);
+  const currentListings = sortedListings.slice(startIndex, endIndex);
 
   return (
     <div className="bg-white w-full flex flex-col min-h-screen">
@@ -99,11 +115,11 @@ export default function ListingPage() {
                     <SelectValue placeholder="Sort by" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="recommended">Recommended</SelectItem>
-                    <SelectItem value="price-low">Price: Low to High</SelectItem>
-                    <SelectItem value="price-high">Price: High to Low</SelectItem>
-                    <SelectItem value="rating">Rating: High to Low</SelectItem>
-                    <SelectItem value="stars">Star Rating</SelectItem>
+                    <SelectItem value="recommended" data-testid="option-recommended">Recommended</SelectItem>
+                    <SelectItem value="price-low" data-testid="option-price-low">Price: Low to High</SelectItem>
+                    <SelectItem value="price-high" data-testid="option-price-high">Price: High to Low</SelectItem>
+                    <SelectItem value="rating" data-testid="option-rating">Rating: High to Low</SelectItem>
+                    <SelectItem value="stars" data-testid="option-stars">Star Rating</SelectItem>
                   </SelectContent>
                 </Select>
 
@@ -131,12 +147,29 @@ export default function ListingPage() {
               </div>
             </div>
 
-            {/* Listings */}
-            <div className="space-y-4">
-              {currentListings.map((listing) => (
-                <ListingCard key={listing.id} listing={listing} />
-              ))}
-            </div>
+            {/* Listings - List View */}
+            {viewMode === "list" && (
+              <div className="space-y-4">
+                {currentListings.map((listing) => (
+                  <ListingCard key={listing.id} listing={listing} />
+                ))}
+              </div>
+            )}
+
+            {/* Map View */}
+            {viewMode === "map" && (
+              <div className="w-full h-[600px] bg-gray-100 rounded-lg flex items-center justify-center border border-gray-300">
+                <div className="text-center">
+                  <MapPin className="w-12 h-12 text-[#3f2c77] mx-auto mb-4" />
+                  <p className="[font-family:'Poppins',Helvetica] font-semibold text-[#3f2c77] text-lg mb-2">
+                    Map View
+                  </p>
+                  <p className="[font-family:'Inter',Helvetica] text-gray-600 text-sm">
+                    Map integration coming soon
+                  </p>
+                </div>
+              </div>
+            )}
 
             {/* Pagination */}
             {totalPages > 1 && (

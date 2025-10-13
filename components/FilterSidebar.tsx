@@ -1,52 +1,35 @@
 "use client";
 
 import { useState } from "react";
-import { Slider } from "@/components/ui/slider";
+import { Search } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
-import { Star } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Slider } from "@/components/ui/slider";
 
 export function FilterSidebar() {
+  const [searchQuery, setSearchQuery] = useState("");
   const [priceRange, setPriceRange] = useState([0, 1000]);
-  const [selectedStars, setSelectedStars] = useState<number[]>([]);
-  const [selectedAmenities, setSelectedAmenities] = useState<string[]>([]);
   const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
-
-  const amenities = [
-    "Free WiFi",
-    "Parking",
-    "Pool",
-    "Gym",
-    "Restaurant",
-    "Bar",
-    "Spa",
-    "Pet Friendly",
-    "Room Service",
-    "Air Conditioning",
-  ];
+  const [selectedFacilities, setSelectedFacilities] = useState<string[]>([]);
+  const [selectedStars, setSelectedStars] = useState<number[]>([]);
 
   const propertyTypes = [
-    "Hotel",
-    "Resort",
-    "Motel",
-    "Bed & Breakfast",
-    "Apartment",
-    "Villa",
-    "Hostel",
+    { name: "Hotels", count: 407 },
+    { name: "Resorts", count: 407 },
+    { name: "Motels", count: 407 },
+    { name: "Guest Rooms", count: 407 },
   ];
 
-  const toggleStar = (star: number) => {
-    setSelectedStars((prev) =>
-      prev.includes(star) ? prev.filter((s) => s !== star) : [...prev, star]
-    );
-  };
-
-  const toggleAmenity = (amenity: string) => {
-    setSelectedAmenities((prev) =>
-      prev.includes(amenity) ? prev.filter((a) => a !== amenity) : [...prev, amenity]
-    );
-  };
+  const facilities = [
+    { name: "Parking", count: 407 },
+    { name: "Keyless Entry", count: 407 },
+    { name: "Wifi", count: 407 },
+    { name: "Swimming Pool", count: 407 },
+    { name: "Air Condition", count: 407 },
+    { name: "Laundry", count: 407 },
+    { name: "Breakfast Included", count: 407 },
+  ];
 
   const toggleType = (type: string) => {
     setSelectedTypes((prev) =>
@@ -54,18 +37,41 @@ export function FilterSidebar() {
     );
   };
 
-  const clearFilters = () => {
-    setPriceRange([0, 1000]);
-    setSelectedStars([]);
-    setSelectedAmenities([]);
-    setSelectedTypes([]);
+  const toggleFacility = (facility: string) => {
+    setSelectedFacilities((prev) =>
+      prev.includes(facility) ? prev.filter((f) => f !== facility) : [...prev, facility]
+    );
+  };
+
+  const toggleStar = (star: number) => {
+    setSelectedStars((prev) =>
+      prev.includes(star) ? prev.filter((s) => s !== star) : [...prev, star]
+    );
   };
 
   return (
     <div className="space-y-6">
+      {/* Search by Property Name */}
+      <div>
+        <h3 className="[font-family:'Poppins',Helvetica] font-semibold text-black text-base mb-3">
+          Search by property name
+        </h3>
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+          <Input
+            type="text"
+            placeholder="e.g. Best Western"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="pl-10 [font-family:'Inter',Helvetica] text-sm"
+            data-testid="input-search-property"
+          />
+        </div>
+      </div>
+
       {/* Price Range */}
       <div>
-        <h3 className="[font-family:'Poppins',Helvetica] font-semibold text-[#3f2c77] text-base mb-4">
+        <h3 className="[font-family:'Poppins',Helvetica] font-semibold text-black text-base mb-3">
           Price Range
         </h3>
         <div className="space-y-4">
@@ -79,103 +85,107 @@ export function FilterSidebar() {
           />
           <div className="flex items-center justify-between">
             <span className="[font-family:'Inter',Helvetica] text-sm text-gray-600">
-              ${priceRange[0]}
+              CAD ${priceRange[0]}
             </span>
             <span className="[font-family:'Inter',Helvetica] text-sm text-gray-600">
-              ${priceRange[1]}
+              CAD ${priceRange[1]}
             </span>
           </div>
         </div>
       </div>
 
-      {/* Star Rating */}
-      <div>
-        <h3 className="[font-family:'Poppins',Helvetica] font-semibold text-[#3f2c77] text-base mb-4">
-          Star Rating
-        </h3>
-        <div className="space-y-2">
-          {[5, 4, 3, 2, 1].map((stars) => (
-            <div key={stars} className="flex items-center space-x-2">
-              <Checkbox
-                id={`stars-${stars}`}
-                checked={selectedStars.includes(stars)}
-                onCheckedChange={() => toggleStar(stars)}
-                data-testid={`checkbox-stars-${stars}`}
-              />
-              <Label
-                htmlFor={`stars-${stars}`}
-                className="flex items-center gap-1 cursor-pointer [font-family:'Inter',Helvetica] text-sm"
-              >
-                <div className="flex">
-                  {Array.from({ length: stars }).map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-[#febc11] text-[#febc11]" />
-                  ))}
-                </div>
-              </Label>
-            </div>
-          ))}
-        </div>
-      </div>
-
       {/* Property Type */}
       <div>
-        <h3 className="[font-family:'Poppins',Helvetica] font-semibold text-[#3f2c77] text-base mb-4">
+        <h3 className="[font-family:'Poppins',Helvetica] font-semibold text-black text-base mb-3">
           Property Type
         </h3>
         <div className="space-y-2">
           {propertyTypes.map((type) => (
-            <div key={type} className="flex items-center space-x-2">
-              <Checkbox
-                id={`type-${type}`}
-                checked={selectedTypes.includes(type)}
-                onCheckedChange={() => toggleType(type)}
-                data-testid={`checkbox-type-${type.toLowerCase().replace(/\s+/g, '-')}`}
-              />
-              <Label
-                htmlFor={`type-${type}`}
-                className="cursor-pointer [font-family:'Inter',Helvetica] text-sm"
-              >
-                {type}
-              </Label>
+            <div key={type.name} className="flex items-center justify-between">
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  id={`type-${type.name}`}
+                  checked={selectedTypes.includes(type.name)}
+                  onCheckedChange={() => toggleType(type.name)}
+                  data-testid={`checkbox-type-${type.name.toLowerCase().replace(/\s+/g, '-')}`}
+                />
+                <Label
+                  htmlFor={`type-${type.name}`}
+                  className="cursor-pointer [font-family:'Inter',Helvetica] text-sm text-gray-700"
+                >
+                  {type.name}
+                </Label>
+              </div>
+              <span className="[font-family:'Inter',Helvetica] text-sm text-gray-500">
+                {type.count}
+              </span>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Amenities */}
+      {/* Facilities */}
       <div>
-        <h3 className="[font-family:'Poppins',Helvetica] font-semibold text-[#3f2c77] text-base mb-4">
-          Amenities
+        <h3 className="[font-family:'Poppins',Helvetica] font-semibold text-black text-base mb-3">
+          Facilities
         </h3>
-        <div className="space-y-2 max-h-[300px] overflow-y-auto">
-          {amenities.map((amenity) => (
-            <div key={amenity} className="flex items-center space-x-2">
-              <Checkbox
-                id={`amenity-${amenity}`}
-                checked={selectedAmenities.includes(amenity)}
-                onCheckedChange={() => toggleAmenity(amenity)}
-                data-testid={`checkbox-amenity-${amenity.toLowerCase().replace(/\s+/g, '-')}`}
-              />
-              <Label
-                htmlFor={`amenity-${amenity}`}
-                className="cursor-pointer [font-family:'Inter',Helvetica] text-sm"
-              >
-                {amenity}
-              </Label>
+        <div className="space-y-2">
+          {facilities.map((facility) => (
+            <div key={facility.name} className="flex items-center justify-between">
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  id={`facility-${facility.name}`}
+                  checked={selectedFacilities.includes(facility.name)}
+                  onCheckedChange={() => toggleFacility(facility.name)}
+                  data-testid={`checkbox-facility-${facility.name.toLowerCase().replace(/\s+/g, '-')}`}
+                />
+                <Label
+                  htmlFor={`facility-${facility.name}`}
+                  className="cursor-pointer [font-family:'Inter',Helvetica] text-sm text-gray-700"
+                >
+                  {facility.name}
+                </Label>
+              </div>
+              <span className="[font-family:'Inter',Helvetica] text-sm text-gray-500">
+                {facility.count}
+              </span>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Clear Filters */}
-      <Button
-        variant="outline"
-        className="w-full border-[#3f2c77] text-[#3f2c77] hover:bg-[#3f2c77] hover:text-white"
-        onClick={clearFilters}
-        data-testid="button-clear-filters"
-      >
-        Clear All Filters
-      </Button>
+      {/* Property Rating */}
+      <div>
+        <h3 className="[font-family:'Poppins',Helvetica] font-semibold text-black text-base mb-1">
+          Property rating
+        </h3>
+        <p className="[font-family:'Inter',Helvetica] text-xs text-gray-600 mb-3">
+          Find high quality hotels and vacation rentals
+        </p>
+        <div className="space-y-2">
+          {[1, 2, 3, 4, 5].map((stars) => (
+            <div key={stars} className="flex items-center justify-between">
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  id={`stars-${stars}`}
+                  checked={selectedStars.includes(stars)}
+                  onCheckedChange={() => toggleStar(stars)}
+                  data-testid={`checkbox-stars-${stars}`}
+                />
+                <Label
+                  htmlFor={`stars-${stars}`}
+                  className="cursor-pointer [font-family:'Inter',Helvetica] text-sm text-gray-700"
+                >
+                  {stars} {stars === 1 ? "star" : "stars"}
+                </Label>
+              </div>
+              <span className="[font-family:'Inter',Helvetica] text-sm text-gray-500">
+                407
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
