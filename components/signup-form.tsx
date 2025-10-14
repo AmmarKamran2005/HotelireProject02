@@ -278,8 +278,8 @@ export function SignupForm() {
     [
       "h-12",
       "border-gray-300",
-      "focus:border-(--color-ring)",
-      "focus:ring-(--color-ring)",
+      "focus:border-[#3F2C77]",
+      "focus:ring-[#3F2C77]",
       invalid && "border-red-500 ring-1 ring-red-500 focus:ring-red-500 focus:border-red-500",
     ]
       .filter(Boolean)
@@ -293,7 +293,7 @@ export function SignupForm() {
       {/* Logo + Title */}
       <div className="space-y-3">
         <div className="flex items-center justify-center gap-3">
-          <img className="w-[141px] h-[94px]" alt="Group" src="/figmaAssets/group-369.png" />
+          <img className="w-[141px] h-[94px]" alt="Group" src="/figmaAssets/group-369.svg" />
         </div>
         <h1 className="text-2xl lg:text-3xl font-bold flex items-center justify-center" style={{ color: BRAND }}>
           {userType === "customer" ? "Register as Customer" : "Register as Property Owner"}
@@ -424,7 +424,7 @@ export function SignupForm() {
                     setAddressType("canadian")
                     setFormData((p) => ({ ...p, country: { value: "CA", label: "Canada" }, state: "" }))
                   }}
-                  className="h-4 w-4 accent-(--color-ring)"
+                  className="h-4 w-4 accent-[#3F2C77]"
                 />
                 <Label htmlFor="addr-ca" className="text-sm">
                   I prefer a Canadian address
@@ -440,7 +440,7 @@ export function SignupForm() {
                     setAddressType("international")
                     setFormData((p) => ({ ...p, country: null, province: "", state: "", city: "", postalCode: "" }))
                   }}
-                  className="h-4 w-4 accent-(--color-ring)"
+                  className="h-4 w-4 accent-[#3F2C77]"
                 />
                 <Label htmlFor="addr-intl" className="text-sm">
                   I prefer an International address

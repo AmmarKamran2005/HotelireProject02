@@ -91,7 +91,7 @@ export function SignInForm() {
     <div className="space-y-8">
       {/* Logo at the top */}
       <div className="flex items-center justify-center gap-3">
-        <img className="w-[141px] h-[94px]" alt="Logo" src="/figmaAssets/group-369.png" />
+        <img className="w-[141px] h-[94px]" alt="Logo" src="/figmaAssets/group-369.svg" />
       </div>
 
       {/* Sign In Form */}
