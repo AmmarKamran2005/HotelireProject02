@@ -14,7 +14,7 @@ interface DashboardNavbarProps {
 export function DashboardNavbar({ 
   title, 
   userName = "Admin User",
-  userImage = "/placeholder-avatar.jpg" 
+  userImage
 }: DashboardNavbarProps) {
   return (
     <div className="bg-white border-b border-gray-200 sticky top-0 z-40">
@@ -59,9 +59,19 @@ export function DashboardNavbar({
               </p>
             </div>
             <div className="relative w-10 h-10 rounded-full overflow-hidden bg-gray-200 border-2 border-[#3f2c77]">
-              <div className="w-full h-full flex items-center justify-center bg-[#3f2c77] text-white [font-family:'Poppins',Helvetica] font-semibold">
-                {userName.charAt(0).toUpperCase()}
-              </div>
+              {userImage ? (
+                <Image
+                  src={userImage}
+                  alt={userName}
+                  width={40}
+                  height={40}
+                  className="object-cover w-full h-full"
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center bg-[#3f2c77] text-white [font-family:'Poppins',Helvetica] font-semibold">
+                  {userName.charAt(0).toUpperCase()}
+                </div>
+              )}
             </div>
           </div>
         </div>
