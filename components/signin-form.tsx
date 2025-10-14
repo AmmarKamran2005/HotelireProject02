@@ -216,7 +216,7 @@ export function SignInForm() {
             />
           </svg>
           <span className="[font-family:'Inter',Helvetica] text-[15px] font-medium">
-            {isGoogleLoading ? "Connecting..." : "Sign in with Google"}
+            {isGoogleLoading ? "Connecting..." : "Continue with Google"}
           </span>
         </Button>
       </div>
