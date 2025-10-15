@@ -2,9 +2,27 @@
 
 ## Overview
 
-This is a production-ready Next.js hotel management system frontend designed to help users find and browse luxury hotels. The application features a modern, fully responsive interface built with React, TypeScript, and a comprehensive UI component library (shadcn/ui). The system follows a backend-oriented architecture with reusable components and a separated data layer, making it easy to integrate with any API.
+This is a production-ready Next.js hotel management system frontend designed to help users find and browse luxury hotels. The application features a modern, fully responsive interface built with React, TypeScript, and a comprehensive UI component library (shadcn/ui). The system follows a backend-oriented, role-based architecture with reusable components and a separated data layer, making it easy to integrate with any API.
 
 ## Recent Changes (Latest Session)
+
+**Folder Reorganization - Role-Based Structure (Completed - October 15, 2025)**
+- Restructured app directory into role-based sections:
+  - `/app/customer/` - Customer-facing pages (landing, signin, signup, thank-you)
+  - `/app/admin/` - Super Admin dashboard
+  - `/app/owner/` - Property Owner dashboard
+- Authentication pages moved to `/app/customer/` with inlined logic:
+  - `/app/customer/signin/page.tsx` - Sign in page with email/password and Google OAuth
+  - `/app/customer/signup/page.tsx` - Complex signup form (Customer/Owner registration)
+  - `/app/customer/signup/thank-you/page.tsx` - Post-signup confirmation
+- All auth logic inlined directly in pages (no external components)
+- Root `/app/page.tsx` redirects to `/customer`
+- Customer landing page at `/app/customer/page.tsx` (former home page)
+- Removed redundant files: components/auth/, components/signin-form.tsx, components/signup-form.tsx
+- All auth pages use Rectangle-334.png hotel room image with #3F2C77 overlay
+- Maintained all existing validations and design consistency
+
+**Previous Changes**
 
 **Dashboard Panels Implementation (Completed - October 14, 2025)**
 - Built two professional dashboard panels with consistent design system
@@ -46,13 +64,16 @@ This is a production-ready Next.js hotel management system frontend designed to 
 **Framework: Next.js 15 with App Router**
 - Modern App Router architecture with server and client components
 - TypeScript used throughout for type safety
-- Production-ready structure with separated data layer (`lib/data.ts`)
-- Type definitions in `types/index.ts` for maintainability
+- Production-ready role-based folder structure:
+  - `/app/admin/` - Admin dashboard pages
+  - `/app/owner/` - Property owner dashboard pages
+  - `/app/customer/` - Customer-facing pages (landing, auth)
+  - `/app/listing/` - Property listing pages
+- Separated data layer (`lib/data.ts`) and type definitions (`types/index.ts`)
 - Reusable component library in `components/` directory
 - Client-side state management with React hooks and TanStack Query
 - Configured as standalone build for optimized deployment
 - Next.js Image and Link components used throughout for optimization
-- Prefetch disabled on navigation links (remove when routes are implemented)
 
 **UI Component System**
 - Built on Radix UI primitives for accessible, unstyled components

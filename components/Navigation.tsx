@@ -8,7 +8,7 @@ export function Navigation() {
     <nav className="w-full bg-white min-h-[80px] lg:h-[111px] flex flex-col lg:flex-row items-center justify-between px-4 md:px-8 lg:px-[103px] py-4 lg:py-0 gap-4 lg:gap-0">
       <Link href="/">
         <Image
-          src="/figmaAssets/group-369.png"
+          src="/figmaAssets/group-370.png"
           alt="Hotelire"
           width={141}
           height={94}
@@ -17,21 +17,41 @@ export function Navigation() {
       </Link>
 
       <div className="flex flex-wrap items-center justify-center gap-4 lg:gap-12 [font-family:'Inter',Helvetica] font-bold text-black text-[15px] lg:text-[17px]">
-        <Link href="/" prefetch={false} className="flex items-center gap-2 cursor-pointer hover:text-[#3f2c77] transition-colors duration-200">
+        <Link
+          href="/"
+          prefetch={false}
+          className="flex items-center gap-2 cursor-pointer hover:text-[#3f2c77] transition-colors duration-200"
+        >
           <span>HOME</span>
           <ChevronDownIcon className="w-[13px] h-2" aria-hidden="true" />
         </Link>
-        <Link href="/destinations" prefetch={false} className="flex items-center gap-2 cursor-pointer hover:text-[#3f2c77] transition-colors duration-200">
+        <Link
+          href="/destinations"
+          prefetch={false}
+          className="flex items-center gap-2 cursor-pointer hover:text-[#3f2c77] transition-colors duration-200"
+        >
           <span>DESTINATIONS</span>
           <ChevronDownIcon className="w-[13px] h-2" aria-hidden="true" />
         </Link>
-        <Link href="/listing" prefetch={false} className="cursor-pointer hover:text-[#3f2c77] transition-colors duration-200">
+        <Link
+          href="/listing"
+          prefetch={false}
+          className="cursor-pointer hover:text-[#3f2c77] transition-colors duration-200"
+        >
           SEARCH
         </Link>
-        <Link href="/blog" prefetch={false} className="cursor-pointer hover:text-[#3f2c77] transition-colors duration-200">
+        <Link
+          href="/blog"
+          prefetch={false}
+          className="cursor-pointer hover:text-[#3f2c77] transition-colors duration-200"
+        >
           BLOG
         </Link>
-        <Link href="/contact" prefetch={false} className="cursor-pointer hover:text-[#3f2c77] transition-colors duration-200">
+        <Link
+          href="/contact"
+          prefetch={false}
+          className="cursor-pointer hover:text-[#3f2c77] transition-colors duration-200"
+        >
           CONTACT
         </Link>
       </div>
