@@ -1,0 +1,127 @@
+"use client"
+
+import { useState } from "react"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Checkbox } from "@/components/ui/checkbox"
+
+interface PasswordModalProps {
+  isOpen: boolean
+  onClose: () => void
+  email: string
+  onLoginSuccess: () => void
+  onForgotPassword: () => void
+}
+
+export function PasswordModal({ isOpen, onClose, email, onLoginSuccess, onForgotPassword }: PasswordModalProps) {
+  const [password, setPassword] = useState("")
+  const [rememberMe, setRememberMe] = useState(false)
+  const [error, setError] = useState("")
+  const [isLoggingIn, setIsLoggingIn] = useState(false)
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault()
+    
+    if (!password.trim()) {
+      setError("Password is required")
+      return
+    }
+
+    setIsLoggingIn(true)
+    setError("")
+
+    try {
+      const response = await fetch("/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password, rememberMe }),
+      })
+
+      if (response.ok) {
+        onLoginSuccess()
+      } else {
+        const data = await response.json()
+        setError(data.message || "Incorrect password. Please try again.")
+        setPassword("")
+      }
+    } catch (err) {
+      setError("Login failed. Please try again.")
+    } finally {
+      setIsLoggingIn(false)
+    }
+  }
+
+  return (
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogContent className="sm:max-w-[425px] transition-all duration-300 ease-in-out animate-in fade-in-0 zoom-in-95" data-testid="modal-password">
+        <DialogHeader>
+          <DialogTitle className="[font-family:'Poppins',Helvetica] text-2xl font-bold text-[#3F2C77]">
+            Welcome Back
+          </DialogTitle>
+          <DialogDescription className="[font-family:'Inter',Helvetica] text-gray-600">
+            Enter your password to continue.
+          </DialogDescription>
+        </DialogHeader>
+
+        <form onSubmit={handleLogin} className="space-y-4 py-4">
+          <div className="space-y-2">
+            <Label htmlFor="password" className="[font-family:'Inter',Helvetica] text-gray-700 font-medium">
+              Password
+            </Label>
+            <Input
+              id="password"
+              name="password"
+              type="password"
+              placeholder="••••••••"
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value)
+                setError("")
+              }}
+              className="h-12 border-gray-300 focus:border-[#3F2C77] focus:ring-[#3F2C77]"
+              autoFocus
+              data-testid="input-password"
+            />
+            {error && (
+              <p className="text-sm text-red-500 [font-family:'Inter',Helvetica]" data-testid="text-password-error">
+                {error}
+              </p>
+            )}
+          </div>
+
+          <div className="flex items-center justify-between">
+            <label className="flex items-center gap-2 [font-family:'Inter',Helvetica] text-sm text-gray-600">
+              <Checkbox
+                checked={rememberMe}
+                onCheckedChange={(checked) => setRememberMe(Boolean(checked))}
+                className="border-gray-300 data-[state=checked]:bg-[#3F2C77] data-[state=checked]:border-[#3F2C77]"
+                data-testid="checkbox-remember-me"
+              />
+              Remember me
+            </label>
+
+            <button
+              type="button"
+              onClick={onForgotPassword}
+              className="text-sm text-blue-600 hover:underline [font-family:'Inter',Helvetica]"
+              data-testid="link-forgot-password"
+            >
+              Forgot password?
+            </button>
+          </div>
+
+          <Button
+            type="submit"
+            disabled={isLoggingIn}
+            className="w-full h-12 bg-[#3F2C77] hover:bg-[#2a2158] text-white transition-colors duration-200"
+            data-testid="button-continue"
+          >
+            {isLoggingIn ? "Logging in..." : "Continue"}
+          </Button>
+        </form>
+      </DialogContent>
+    </Dialog>
+  )
+}
