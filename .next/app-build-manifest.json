@@ -11,6 +11,11 @@
       "static/chunks/main-app.js",
       "static/chunks/app/page.js"
     ],
+    "/customer/signin/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/customer/signin/page.js"
+    ],
     "/customer/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
