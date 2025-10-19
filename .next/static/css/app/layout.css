@@ -1542,6 +1542,9 @@ body{
 .w-12{
   width: 3rem;
 }
+.w-14{
+  width: 3.5rem;
+}
 .w-2{
   width: 0.5rem;
 }
@@ -1638,9 +1641,6 @@ body{
 }
 .w-px{
   width: 1px;
-}
-.w-14{
-  width: 3.5rem;
 }
 .min-w-0{
   min-width: 0px;
@@ -2056,6 +2056,10 @@ body{
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity, 1));
 }
+.border-green-200{
+  --tw-border-opacity: 1;
+  border-color: rgb(187 247 208 / var(--tw-border-opacity, 1));
+}
 .border-input{
   border-color: hsl(var(--input));
 }
@@ -2068,10 +2072,6 @@ body{
 }
 .border-transparent{
   border-color: transparent;
-}
-.border-green-200{
-  --tw-border-opacity: 1;
-  border-color: rgb(187 247 208 / var(--tw-border-opacity, 1));
 }
 .border-l-\[\#3f2c77\]{
   --tw-border-opacity: 1;
@@ -2098,6 +2098,10 @@ body{
 .bg-\[\#080808\]{
   --tw-bg-opacity: 1;
   background-color: rgb(8 8 8 / var(--tw-bg-opacity, 1));
+}
+.bg-\[\#3F2C77\]{
+  --tw-bg-opacity: 1;
+  background-color: rgb(63 44 119 / var(--tw-bg-opacity, 1));
 }
 .bg-\[\#3f2c77\]{
   --tw-bg-opacity: 1;
@@ -2170,6 +2174,10 @@ body{
   --tw-bg-opacity: 1;
   background-color: rgb(220 252 231 / var(--tw-bg-opacity, 1));
 }
+.bg-green-50{
+  --tw-bg-opacity: 1;
+  background-color: rgb(240 253 244 / var(--tw-bg-opacity, 1));
+}
 .bg-muted{
   background-color: hsl(var(--muted));
 }
@@ -2198,14 +2206,6 @@ body{
 }
 .bg-white\/90{
   background-color: rgb(255 255 255 / 0.9);
-}
-.bg-\[\#3F2C77\]{
-  --tw-bg-opacity: 1;
-  background-color: rgb(63 44 119 / var(--tw-bg-opacity, 1));
-}
-.bg-green-50{
-  --tw-bg-opacity: 1;
-  background-color: rgb(240 253 244 / var(--tw-bg-opacity, 1));
 }
 .bg-\[linear-gradient\(180deg\2c rgba\(255\2c 255\2c 255\2c 0\)_56\%\2c rgba\(254\2c 188\2c 17\2c 1\)_89\%\)\]{
   background-image: linear-gradient(180deg,rgba(255,255,255,0) 56%,rgba(254,188,17,1) 89%);
@@ -2367,11 +2367,11 @@ body{
 .pt-4{
   padding-top: 1rem;
 }
-.pt-\[180px\]{
-  padding-top: 180px;
-}
 .pt-6{
   padding-top: 1.5rem;
+}
+.pt-\[180px\]{
+  padding-top: 180px;
 }
 .text-left{
   text-align: left;
@@ -2493,6 +2493,10 @@ body{
   --tw-text-opacity: 1;
   color: rgb(53 84 209 / var(--tw-text-opacity, 1));
 }
+.text-\[\#3F2C77\]{
+  --tw-text-opacity: 1;
+  color: rgb(63 44 119 / var(--tw-text-opacity, 1));
+}
 .text-\[\#3f2c77\]{
   --tw-text-opacity: 1;
   color: rgb(63 44 119 / var(--tw-text-opacity, 1));
@@ -2582,9 +2586,17 @@ body{
   --tw-text-opacity: 1;
   color: rgb(17 24 39 / var(--tw-text-opacity, 1));
 }
+.text-green-600{
+  --tw-text-opacity: 1;
+  color: rgb(22 163 74 / var(--tw-text-opacity, 1));
+}
 .text-green-700{
   --tw-text-opacity: 1;
   color: rgb(21 128 61 / var(--tw-text-opacity, 1));
+}
+.text-green-800{
+  --tw-text-opacity: 1;
+  color: rgb(22 101 52 / var(--tw-text-opacity, 1));
 }
 .text-muted-foreground{
   color: hsl(var(--muted-foreground));
@@ -2608,18 +2620,6 @@ body{
 .text-white{
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
-}
-.text-\[\#3F2C77\]{
-  --tw-text-opacity: 1;
-  color: rgb(63 44 119 / var(--tw-text-opacity, 1));
-}
-.text-green-800{
-  --tw-text-opacity: 1;
-  color: rgb(22 101 52 / var(--tw-text-opacity, 1));
-}
-.text-green-600{
-  --tw-text-opacity: 1;
-  color: rgb(22 163 74 / var(--tw-text-opacity, 1));
 }
 .underline{
   text-decoration-line: underline;
@@ -3067,6 +3067,11 @@ body{
   color: rgb(42 63 168 / var(--tw-text-opacity, 1));
 }
 
+.hover\:text-\[\#3F2C77\]:hover{
+  --tw-text-opacity: 1;
+  color: rgb(63 44 119 / var(--tw-text-opacity, 1));
+}
+
 .hover\:text-\[\#3f2c77\]:hover{
   --tw-text-opacity: 1;
   color: rgb(63 44 119 / var(--tw-text-opacity, 1));
@@ -3096,11 +3101,6 @@ body{
 .hover\:text-white:hover{
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
-}
-
-.hover\:text-\[\#3F2C77\]:hover{
-  --tw-text-opacity: 1;
-  color: rgb(63 44 119 / var(--tw-text-opacity, 1));
 }
 
 .hover\:underline:hover{
@@ -3984,12 +3984,12 @@ body{
     width: auto;
   }
 
-  .sm\:max-w-sm{
-    max-width: 24rem;
-  }
-
   .sm\:max-w-\[425px\]{
     max-width: 425px;
+  }
+
+  .sm\:max-w-sm{
+    max-width: 24rem;
   }
 
   .sm\:flex-initial{
@@ -4310,6 +4310,11 @@ body{
     line-height: 2rem;
   }
 
+  .md\:text-3xl{
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+
   .md\:text-\[13px\]{
     font-size: 13px;
   }
@@ -4356,11 +4361,6 @@ body{
   .md\:text-xl{
     font-size: 1.25rem;
     line-height: 1.75rem;
-  }
-
-  .md\:text-3xl{
-    font-size: 1.875rem;
-    line-height: 2.25rem;
   }
 
   .md\:leading-\[19\.4px\]{

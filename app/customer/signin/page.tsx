@@ -64,12 +64,17 @@ export default function SignInPage() {
         setShowPasswordModal(true)
       } else {
         // Email doesn't exist - send OTP and show verification modal
-        await fetch("/api/send-otp", {
+        const otpResponse = await fetch("/api/send-otp", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email: email.trim() }),
         })
-        setShowOTPModal(true)
+        
+        if (otpResponse.ok) {
+          setShowOTPModal(true)
+        } else {
+          setError("Failed to send verification code. Please try again.")
+        }
       }
     } catch (err) {
       setError("Unable to process request. Please try again.")
