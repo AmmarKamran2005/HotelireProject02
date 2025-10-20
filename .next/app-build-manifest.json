@@ -11,25 +11,20 @@
       "static/chunks/main-app.js",
       "static/chunks/app/page.js"
     ],
-    "/customer/signin/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/customer/signin/page.js"
-    ],
     "/customer/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/customer/page.js"
     ],
-    "/customer/signup/page": [
+    "/customer/listing/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/customer/signup/page.js"
+      "static/chunks/app/customer/listing/page.js"
     ],
-    "/_not-found/page": [
+    "/customer/signin/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/_not-found/page.js"
+      "static/chunks/app/customer/signin/page.js"
     ]
   }
 }

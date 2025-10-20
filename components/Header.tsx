@@ -10,7 +10,7 @@ import {
 
 export function Header() {
   return (
-    <header className="w-full bg-[#3f2c77] h-12 flex items-center justify-between px-4 md:px-8 lg:px-[103px]">
+    <header className="w-full bg-[#3f2c77] h-12 flex items-center justify-between px-4 md:px-8 lg:px-[203px]">
       <div className="flex items-center gap-4">
         {/* <Link href="/">
           <Image
@@ -62,29 +62,29 @@ export function Header() {
       </a>
       {/* <DropdownMenu>
         <DropdownMenuTrigger asChild> */}
-          <button
-            className="flex items-center gap-2 cursor-pointer bg-transparent border-none outline-none"
-            aria-label="User menu"
+      <button
+        className="flex items-center gap-2 cursor-pointer bg-transparent border-none outline-none"
+        aria-label="User menu"
+      >
+        <Image
+          src="/figmaAssets/login.png"
+          alt="User avatar"
+          width={32}
+          height={32}
+          className="w-6 h-6 rounded-full"
+        />
+        <span className="text-[#febc11] text-[13px] [font-family:'Poppins',Helvetica] font-bold hidden sm:block">
+          <Link
+            href="./customer/signin"
+            prefetch={false}
+            className="[font-family:'Poppins',Helvetica] font-medium text-[#FFFFFF] text-[12px] leading-[30px] cursor-pointer w-full"
           >
-            <Image
-              src="/figmaAssets/avatar.png"
-              alt="User avatar"
-              width={32}
-              height={32}
-              className="w-8 h-8 rounded-full"
-            />
-            <span className="text-[#febc11] text-[13px] [font-family:'Poppins',Helvetica] font-bold hidden sm:block">
-              <Link
-                href="./customer/signin"
-                prefetch={false}
-                className="[font-family:'Poppins',Helvetica] font-medium text-[#FEC328] text-[16px] leading-[30px] cursor-pointer w-full"
-              >
-                Login
-              </Link>
-            </span>
-          </button>
-        {/* </DropdownMenuTrigger> */}
-        {/* <DropdownMenuContent className="w-[131px] bg-[#f5f6fdf0] rounded-[0px_0px_4px_4px] p-4 shadow-md">
+            Login
+          </Link>
+        </span>
+      </button>
+      {/* </DropdownMenuTrigger> */}
+      {/* <DropdownMenuContent className="w-[131px] bg-[#f5f6fdf0] rounded-[0px_0px_4px_4px] p-4 shadow-md">
           <DropdownMenuItem asChild>
             <Link
               href="/account"

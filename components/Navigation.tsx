@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 
 export function Navigation() {
   return (
-    <nav className="w-full bg-white min-h-[80px] lg:h-[111px] flex flex-col lg:flex-row items-center justify-between px-4 md:px-8 lg:px-[103px] py-4 lg:py-0 gap-4 lg:gap-0">
+    <nav className="w-full bg-white min-h-[80px] lg:h-[111px] flex flex-col lg:flex-row items-center justify-between px-4 md:px-8 lg:px-[203px] py-4 lg:py-0 gap-4 lg:gap-0">
       <Link href="/">
         <Image
           src="/figmaAssets/group-370.png"
@@ -54,13 +54,13 @@ export function Navigation() {
           className="w-full sm:w-[160px] lg:w-[181px] h-[45px] lg:h-[55px] bg-[#f5f6fd] rounded-[5px] border border-solid border-[#d9d9d9] [font-family:'Poppins',Helvetica] font-semibold text-[#3f2c77] text-xs lg:text-sm transition-all duration-200 hover:scale-105 hover:shadow-lg"
           asChild
         >
-          <a href="/owner" rel="noopener noreferrer" target="_blank">
+          <a href="/customer/signin" rel="noopener noreferrer">
             LIST YOUR PROPERTY
           </a>
         </Button>
         <Button className="w-full sm:w-[160px] lg:w-[181px] h-[45px] lg:h-[55px] bg-[#febc11] rounded-[5px] [font-family:'Poppins',Helvetica] font-semibold text-[#3f2c77] text-xs lg:text-sm transition-all duration-200 hover:bg-[#febc11]/90 hover:scale-105 hover:shadow-lg">
-          <a href="/admin" rel="noopener noreferrer" target="_blank">
-            SuperAdmin
+          <a href="/" rel="noopener noreferrer">
+            DISCOVER MORE
           </a>
         </Button>
       </div>

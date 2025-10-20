@@ -1,61 +1,78 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Checkbox } from "@/components/ui/checkbox"
+import { useState } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
+import { EyeIcon, EyeOffIcon } from "lucide-react"; // 👁️ icons added
 
 interface PasswordModalProps {
-  isOpen: boolean
-  onClose: () => void
-  email: string
-  onLoginSuccess: () => void
-  onForgotPassword: () => void
+  isOpen: boolean;
+  onClose: () => void;
+  email: string;
+  onLoginSuccess: () => void;
+  onForgotPassword: () => void;
 }
 
-export function PasswordModal({ isOpen, onClose, email, onLoginSuccess, onForgotPassword }: PasswordModalProps) {
-  const [password, setPassword] = useState("")
-  const [rememberMe, setRememberMe] = useState(false)
-  const [error, setError] = useState("")
-  const [isLoggingIn, setIsLoggingIn] = useState(false)
+export function PasswordModal({
+  isOpen,
+  onClose,
+  email,
+  onLoginSuccess,
+  onForgotPassword,
+}: PasswordModalProps) {
+  const [password, setPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
+  const [error, setError] = useState("");
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
+  const [showPassword, setShowPassword] = useState(false); // 👁️ toggle state
 
   const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault()
-    
+    e.preventDefault();
+
     if (!password.trim()) {
-      setError("Password is required")
-      return
+      setError("Password is required");
+      return;
     }
 
-    setIsLoggingIn(true)
-    setError("")
+    setIsLoggingIn(true);
+    setError("");
 
     try {
       const response = await fetch("/api/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password, rememberMe }),
-      })
+      });
 
       if (response.ok) {
-        onLoginSuccess()
+        onLoginSuccess();
       } else {
-        const data = await response.json()
-        setError(data.message || "Incorrect password. Please try again.")
-        setPassword("")
+        const data = await response.json();
+        setError(data.message || "Incorrect password. Please try again.");
+        setPassword("");
       }
     } catch (err) {
-      setError("Login failed. Please try again.")
+      setError("Login failed. Please try again.");
     } finally {
-      setIsLoggingIn(false)
+      setIsLoggingIn(false);
     }
-  }
+  };
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[425px] transition-all duration-300 ease-in-out animate-in fade-in-0 zoom-in-95" data-testid="modal-password">
+      <DialogContent
+        className="sm:max-w-[425px] transition-all duration-300 ease-in-out animate-in fade-in-0 zoom-in-95"
+        data-testid="modal-password"
+      >
         <DialogHeader>
           <DialogTitle className="[font-family:'Poppins',Helvetica] text-2xl font-bold text-[#3F2C77]">
             Welcome Back
@@ -67,25 +84,46 @@ export function PasswordModal({ isOpen, onClose, email, onLoginSuccess, onForgot
 
         <form onSubmit={handleLogin} className="space-y-4 py-4">
           <div className="space-y-2">
-            <Label htmlFor="password" className="[font-family:'Inter',Helvetica] text-gray-700 font-medium">
+            <Label
+              htmlFor="password"
+              className="[font-family:'Inter',Helvetica] text-gray-700 font-medium"
+            >
               Password
             </Label>
-            <Input
-              id="password"
-              name="password"
-              type="password"
-              placeholder="••••••••"
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value)
-                setError("")
-              }}
-              className="h-12 border-gray-300 focus:border-[#3F2C77] focus:ring-[#3F2C77]"
-              autoFocus
-              data-testid="input-password"
-            />
+
+            {/* 👁️ Password Field with Show/Hide */}
+            <div className="relative">
+              <Input
+                id="password"
+                name="password"
+                type={showPassword ? "text" : "password"}
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  setError("");
+                }}
+                className="h-12 border-gray-300 focus:border-[#3F2C77] focus:ring-[#3F2C77] pr-10"
+                autoFocus
+                data-testid="input-password"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute inset-y-0 right-3 flex items-center text-gray-500 hover:text-[#3F2C77] transition-colors"
+              >
+                {showPassword ? (
+                  <EyeOffIcon className="w-5 h-5" />
+                ) : (
+                  <EyeIcon className="w-5 h-5" />
+                )}
+              </button>
+            </div>
+
             {error && (
-              <p className="text-sm text-red-500 [font-family:'Inter',Helvetica]" data-testid="text-password-error">
+              <p
+                className="text-sm text-red-500 [font-family:'Inter',Helvetica]"
+                data-testid="text-password-error"
+              >
                 {error}
               </p>
             )}
@@ -123,5 +161,5 @@ export function PasswordModal({ isOpen, onClose, email, onLoginSuccess, onForgot
         </form>
       </DialogContent>
     </Dialog>
-  )
+  );
 }

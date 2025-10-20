@@ -36,9 +36,15 @@ export default function ListingPage() {
   const sortedListings = [...listings].sort((a, b) => {
     switch (sortBy) {
       case "price-low":
-        return parseInt(a.price.replace(/[^0-9]/g, "")) - parseInt(b.price.replace(/[^0-9]/g, ""));
+        return (
+          parseInt(a.price.replace(/[^0-9]/g, "")) -
+          parseInt(b.price.replace(/[^0-9]/g, ""))
+        );
       case "price-high":
-        return parseInt(b.price.replace(/[^0-9]/g, "")) - parseInt(a.price.replace(/[^0-9]/g, ""));
+        return (
+          parseInt(b.price.replace(/[^0-9]/g, "")) -
+          parseInt(a.price.replace(/[^0-9]/g, ""))
+        );
       case "rating":
         return parseFloat(b.rating) - parseFloat(a.rating);
       case "stars":
@@ -59,12 +65,12 @@ export default function ListingPage() {
       <Navigation />
 
       {/* Search Section */}
-      <section className="w-full bg-[#f5f6fd] py-6 md:py-8 px-4 md:px-8 lg:px-[103px]">
+      <section className="w-full bg-[#f5f6fd] py-6 md:py-8 px-4 md:px-8 lg:px-[203px]">
         <SearchBar />
       </section>
 
       {/* Results Section */}
-      <section className="flex-1 w-full px-4 md:px-8 lg:px-[103px] py-6 md:py-8">
+      <section className="flex-1 w-full px-4 md:px-8 lg:px-[203px] py-6 md:py-8">
         <div className="flex flex-col lg:flex-row gap-6">
           {/* Desktop Filter Sidebar */}
           <aside className="hidden lg:block w-[280px] flex-shrink-0">
@@ -97,7 +103,10 @@ export default function ListingPage() {
                       Filters
                     </Button>
                   </SheetTrigger>
-                  <SheetContent side="left" className="w-[300px] overflow-y-auto">
+                  <SheetContent
+                    side="left"
+                    className="w-[300px] overflow-y-auto"
+                  >
                     <SheetHeader>
                       <SheetTitle className="[font-family:'Poppins',Helvetica] font-bold text-[#3f2c77]">
                         Filters
@@ -111,15 +120,37 @@ export default function ListingPage() {
 
                 {/* Sort Dropdown */}
                 <Select value={sortBy} onValueChange={setSortBy}>
-                  <SelectTrigger className="w-full sm:w-[180px]" data-testid="select-sort">
+                  <SelectTrigger
+                    className="w-full sm:w-[180px]"
+                    data-testid="select-sort"
+                  >
                     <SelectValue placeholder="Sort by" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="recommended" data-testid="option-recommended">Recommended</SelectItem>
-                    <SelectItem value="price-low" data-testid="option-price-low">Price: Low to High</SelectItem>
-                    <SelectItem value="price-high" data-testid="option-price-high">Price: High to Low</SelectItem>
-                    <SelectItem value="rating" data-testid="option-rating">Rating: High to Low</SelectItem>
-                    <SelectItem value="stars" data-testid="option-stars">Star Rating</SelectItem>
+                    <SelectItem
+                      value="recommended"
+                      data-testid="option-recommended"
+                    >
+                      Recommended
+                    </SelectItem>
+                    <SelectItem
+                      value="price-low"
+                      data-testid="option-price-low"
+                    >
+                      Price: Low to High
+                    </SelectItem>
+                    <SelectItem
+                      value="price-high"
+                      data-testid="option-price-high"
+                    >
+                      Price: High to Low
+                    </SelectItem>
+                    <SelectItem value="rating" data-testid="option-rating">
+                      Rating: High to Low
+                    </SelectItem>
+                    <SelectItem value="stars" data-testid="option-stars">
+                      Star Rating
+                    </SelectItem>
                   </SelectContent>
                 </Select>
 
@@ -176,26 +207,36 @@ export default function ListingPage() {
               <div className="flex items-center justify-center gap-2 mt-8">
                 <Button
                   variant="outline"
-                  onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
+                  onClick={() =>
+                    setCurrentPage((prev) => Math.max(1, prev - 1))
+                  }
                   disabled={currentPage === 1}
                   data-testid="button-prev-page"
                 >
                   Previous
                 </Button>
-                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                  <Button
-                    key={page}
-                    variant={currentPage === page ? "default" : "outline"}
-                    className={currentPage === page ? "bg-[#3f2c77] hover:bg-[#2a2158]" : ""}
-                    onClick={() => setCurrentPage(page)}
-                    data-testid={`button-page-${page}`}
-                  >
-                    {page}
-                  </Button>
-                ))}
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                  (page) => (
+                    <Button
+                      key={page}
+                      variant={currentPage === page ? "default" : "outline"}
+                      className={
+                        currentPage === page
+                          ? "bg-[#3f2c77] hover:bg-[#2a2158]"
+                          : ""
+                      }
+                      onClick={() => setCurrentPage(page)}
+                      data-testid={`button-page-${page}`}
+                    >
+                      {page}
+                    </Button>
+                  ),
+                )}
                 <Button
                   variant="outline"
-                  onClick={() => setCurrentPage((prev) => Math.min(totalPages, prev + 1))}
+                  onClick={() =>
+                    setCurrentPage((prev) => Math.min(totalPages, prev + 1))
+                  }
                   disabled={currentPage === totalPages}
                   data-testid="button-next-page"
                 >

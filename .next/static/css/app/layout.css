@@ -462,6 +462,7 @@
 }
 
 @keyframes shimmer {
+
   0%,
   90%,
   to {
@@ -2340,6 +2341,9 @@ body{
 .pl-8{
   padding-left: 2rem;
 }
+.pr-10{
+  padding-right: 2.5rem;
+}
 .pr-2{
   padding-right: 0.5rem;
 }
@@ -2410,9 +2414,6 @@ body{
 }
 .text-\[15px\]{
   font-size: 15px;
-}
-.text-\[16px\]{
-  font-size: 16px;
 }
 .text-\[17px\]{
   font-size: 17px;
@@ -2513,9 +2514,9 @@ body{
   --tw-text-opacity: 1;
   color: rgb(254 188 17 / var(--tw-text-opacity, 1));
 }
-.text-\[\#FEC328\]{
+.text-\[\#FFFFFF\]{
   --tw-text-opacity: 1;
-  color: rgb(254 195 40 / var(--tw-text-opacity, 1));
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 .text-\[\#acacac\]{
   --tw-text-opacity: 1;
@@ -2775,6 +2776,9 @@ body{
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
+.duration-100{
+  transition-duration: 100ms;
+}
 .duration-1000{
   transition-duration: 1000ms;
 }
@@ -2821,6 +2825,9 @@ body{
 }
 .zoom-in-95{
   --tw-enter-scale: .95;
+}
+.duration-100{
+  animation-duration: 100ms;
 }
 .duration-1000{
   animation-duration: 1000ms;
@@ -3123,8 +3130,8 @@ body{
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
-.hover\:shadow-\[0_4px_12px_rgba\(0\2c 0\2c 0\2c 0\.05\)\]:hover{
-  --tw-shadow: 0 4px 12px rgba(0,0,0,0.05);
+.hover\:shadow-\[0_4px_12px_rgba\(0\2c 0\2c 0\2c 0\.01\)\]:hover{
+  --tw-shadow: 0 4px 12px rgba(0,0,0,0.01);
   --tw-shadow-colored: 0 4px 12px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
@@ -4433,8 +4440,8 @@ body{
     margin-left: 622px;
   }
 
-  .lg\:mr-\[103px\]{
-    margin-right: 103px;
+  .lg\:mr-\[203px\]{
+    margin-right: 203px;
   }
 
   .lg\:mt-\[133px\]{
@@ -4526,9 +4533,9 @@ body{
     padding-right: 3rem;
   }
 
-  .lg\:px-\[103px\]{
-    padding-left: 103px;
-    padding-right: 103px;
+  .lg\:px-\[203px\]{
+    padding-left: 203px;
+    padding-right: 203px;
   }
 
   .lg\:py-0{
@@ -4541,14 +4548,14 @@ body{
     padding-bottom: 102px;
   }
 
+  .lg\:py-\[50px\]{
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+
   .lg\:py-\[57px\]{
     padding-top: 57px;
     padding-bottom: 57px;
-  }
-
-  .lg\:py-\[70px\]{
-    padding-top: 70px;
-    padding-bottom: 70px;
   }
 
   .lg\:py-\[81px\]{
@@ -4896,4 +4903,3 @@ body{
 [data-side=right] .\[\[data-side\=right\]_\&\]\:cursor-e-resize{
   cursor: e-resize;
 }
-

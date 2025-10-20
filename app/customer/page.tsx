@@ -43,7 +43,7 @@ export default function CustomerHomePage() {
       </section>
 
       {/* Explore Canada */}
-      <section className="w-full bg-[#e3fdff] py-12 md:py-16 lg:py-[81px] px-4 md:px-8 lg:px-[103px]">
+      <section className="w-full bg-[#e3fdff] py-12 md:py-16 lg:py-[81px] px-4 md:px-8 lg:px-[203px]">
         <h2 className="[font-family:'Poppins',Helvetica] font-bold text-[#3f2c77] text-[22px] md:text-[26px] lg:text-[28px] mb-3">
           Explore Canada
         </h2>
@@ -59,7 +59,7 @@ export default function CustomerHomePage() {
       </section>
 
       {/* Most Popular Hotels */}
-      <section className="w-full py-12 md:py-16 lg:py-[82px] px-4 md:px-8 lg:px-[103px]">
+      <section className="w-full py-12 md:py-16 lg:py-[82px] px-4 md:px-8 lg:px-[203px]">
         <h2 className="[font-family:'Poppins',Helvetica] font-bold text-[#3f2c77] text-[22px] md:text-[26px] lg:text-[28px] mb-3">
           Most Popular Hotels
         </h2>
@@ -75,7 +75,7 @@ export default function CustomerHomePage() {
       </section>
 
       {/* Offers */}
-      <section className="w-full bg-[#eaffe6] py-12 md:py-16 lg:py-[102px] px-4 md:px-8 lg:px-[103px]">
+      <section className="w-full bg-[#eaffe6] py-12 md:py-16 lg:py-[102px] px-4 md:px-8 lg:px-[203px]">
         <h2 className="[font-family:'Poppins',Helvetica] font-bold text-[#3f2c77] text-[22px] md:text-[26px] lg:text-[28px] mb-3">
           Offers
         </h2>
@@ -131,7 +131,7 @@ export default function CustomerHomePage() {
       </section>
 
       {/* Unique Properties */}
-      <section className="w-full py-12 md:py-16 lg:py-[57px] px-4 md:px-8 lg:px-[103px]">
+      <section className="w-full py-12 md:py-16 lg:py-[57px] px-4 md:px-8 lg:px-[203px]">
         <h2 className="[font-family:'Poppins',Helvetica] font-bold text-[#3f2c77] text-[22px] md:text-[26px] lg:text-[28px] mb-3">
           Stay at our top unique properties
         </h2>
@@ -159,7 +159,7 @@ export default function CustomerHomePage() {
       </section>
 
       {/* Business CTA */}
-      <section className="w-full bg-[#e3fdff] py-12 md:py-16 lg:py-[70px] relative overflow-hidden">
+      <section className="w-full bg-[#e3fdff] py-12 md:py-16 lg:py-[50px] relative overflow-hidden">
         <div className="absolute top-[-45px] left-[210px] w-[244px] h-[498px] -rotate-90 bg-[linear-gradient(180deg,rgba(255,255,255,0)_56%,rgba(254,188,17,1)_89%)] hidden lg:block" />
 
         <Image
@@ -170,7 +170,7 @@ export default function CustomerHomePage() {
           className="absolute top-0 left-0 w-full md:w-[581px] h-[200px] md:h-[326px] object-cover opacity-50 md:opacity-100"
         />
 
-        <div className="relative z-10 px-4 md:px-8 lg:ml-[622px] lg:mr-[103px] pt-[180px] md:pt-0">
+        <div className="relative z-10 px-4 md:px-8 lg:ml-[622px] lg:mr-[203px] pt-[180px] md:pt-0">
           <h2 className="[font-family:'Inter',Helvetica] font-bold text-[#3f2c77] text-[22px] md:text-[26px] mb-6 md:mb-[37px]">
             Grow Your Business with Hotelire
           </h2>

@@ -8,14 +8,14 @@ interface DestinationCardProps {
 
 export function DestinationCard({ destination }: DestinationCardProps) {
   return (
-    <Card className="overflow-hidden border-0 shadow-none bg-transparent cursor-pointer transition-all duration-200 hover:shadow-[0_4px_12px_rgba(0,0,0,0.05)] hover:-translate-y-[2px]">
+    <Card className="overflow-hidden border-0 shadow-none bg-transparent cursor-pointer transition-all duration-100 hover:shadow-[0_4px_12px_rgba(0,0,0,0.01)] hover:-translate-y-[2px]">
       <CardContent className="p-0">
         <div className="relative w-full h-[180px] md:h-[200px] lg:h-[218px] rounded-lg overflow-hidden">
           <Image
             src={destination.image}
             alt={destination.name}
             fill
-            className="object-cover transition-transform duration-300" // removed group-hover scale
+            className="object-cover" // removed group-hover scale
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
           />
         </div>
