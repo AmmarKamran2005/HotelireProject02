@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
@@ -7,8 +8,37 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { authCheck } from "@/services/authCheck";
+
+const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+
 
 export function Header() {
+
+
+  const [userName, setuserName] = useState();
+
+  const getUser = async () => {
+
+    const user = await authCheck();
+
+    if(user){
+      setuserName(user.user.firstname);
+    }
+
+ 
+
+  }
+
+  useEffect(() => {
+    getUser();
+  }, [])
+
+
+
+
   return (
     <header className="w-full bg-[#3f2c77] h-12 flex items-center justify-between px-4 md:px-8 lg:px-[203px]">
       <div className="flex items-center gap-4">
@@ -74,13 +104,22 @@ export function Header() {
           className="w-6 h-6 rounded-full"
         />
         <span className="text-[#febc11] text-[13px] [font-family:'Poppins',Helvetica] font-bold hidden sm:block">
-          <Link
-            href="./customer/signin"
-            prefetch={false}
-            className="[font-family:'Poppins',Helvetica] font-medium text-[#FFFFFF] text-[12px] leading-[30px] cursor-pointer w-full"
-          >
-            Login
-          </Link>
+
+
+
+
+          {
+            (!userName) ?
+              <Link
+                href="./customer/signin"
+                prefetch={false}
+                className="[font-family:'Poppins',Helvetica] font-medium text-[#FFFFFF] text-[12px] leading-[30px] cursor-pointer w-full"
+              >
+                Login
+              </Link> :
+              <p>{userName}</p>
+          }
+
         </span>
       </button>
       {/* </DropdownMenuTrigger> */}

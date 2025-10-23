@@ -10,8 +10,13 @@ import { Separator } from "@/components/ui/separator";
 import { OTPVerificationModal } from "@/components/OTPVerificationModal";
 import { PasswordModal } from "@/components/PasswordModal";
 import { ForgotPasswordModal } from "@/components/ForgotPasswordModal";
+import axios from 'axios';
+
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+
+
 
 export default function SignInPage() {
   const router = useRouter();
@@ -45,36 +50,31 @@ export default function SignInPage() {
     e.preventDefault();
     setError("");
 
+
+
     if (!validateEmail(email)) return;
 
     setIsChecking(true);
 
     try {
       // Check if email exists in database
-      const response = await fetch("/api/validate-email", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: email.trim() }),
+      const { data: response } = await axios.post(`${baseUrl}/auth/checkEmail`, {
+        email: email,
       });
 
-      const data = await response.json();
 
-      if (data.exists) {
+      //verifyCode
+
+      if (response.nextStep == "password") {
         // Email exists - show password modal for returning user
         setShowPasswordModal(true);
-      } else {
+      }
+      else if (response.nextStep == "verifyCode") {
+        setShowOTPModal(true);
+      }
+      else {
         // Email doesn't exist - send OTP and show verification modal
-        const otpResponse = await fetch("/api/send-otp", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email: email.trim() }),
-        });
-
-        if (otpResponse.ok) {
-          setShowOTPModal(true);
-        } else {
-          setError("Failed to send verification code. Please try again.");
-        }
+        setError("Something went wrong. Please try later.");
       }
     } catch (err) {
       setError("Unable to process request. Please try again.");
@@ -88,7 +88,9 @@ export default function SignInPage() {
 
     // Redirect based on entry point
     const redirectPath = getSignupRedirectPath(entryPoint);
-    router.push(`${redirectPath}?email=${encodeURIComponent(email.trim())}`);
+    const url = `${redirectPath}${redirectPath.includes("?") ? "&" : "?"}email=${encodeURIComponent(email.trim())}`;
+    router.push(url);
+
   };
 
   const handleLoginSuccess = () => {

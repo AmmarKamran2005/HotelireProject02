@@ -4,6 +4,8 @@ import { useState, useRef, useEffect } from "react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import axios from 'axios';
+
 
 interface OTPVerificationModalProps {
   isOpen: boolean
@@ -11,6 +13,11 @@ interface OTPVerificationModalProps {
   email: string
   onVerifySuccess: () => void
 }
+
+const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+
+
+
 
 export function OTPVerificationModal({ isOpen, onClose, email, onVerifySuccess }: OTPVerificationModalProps) {
   const [otp, setOtp] = useState(["", "", "", ""])
@@ -83,13 +90,13 @@ export function OTPVerificationModal({ isOpen, onClose, email, onVerifySuccess }
     setError("")
 
     try {
-      const response = await fetch("/api/verify-otp", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, code }),
-      })
+ 
+      const { data: response } = await axios.post(`${baseUrl}/auth/verifyCode`, {
+      email: email,
+      code:code
+    });
 
-      if (response.ok) {
+      if (response.message == "Email verified successfully") {
         onVerifySuccess()
       } else {
         setError("Invalid verification code. Please try again.")

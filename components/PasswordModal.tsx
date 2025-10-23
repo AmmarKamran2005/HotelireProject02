@@ -13,6 +13,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { EyeIcon, EyeOffIcon } from "lucide-react"; // 👁️ icons added
+import axios from "axios";
+
+const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 interface PasswordModalProps {
   isOpen: boolean;
@@ -47,17 +50,36 @@ export function PasswordModal({
     setError("");
 
     try {
-      const response = await fetch("/api/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password, rememberMe }),
-      });
+      // const response = await fetch("/api/login", {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify({ email, password, rememberMe }),
+      // });
 
-      if (response.ok) {
-        onLoginSuccess();
+      const response = await axios.post(
+        `${baseUrl}/auth/login`,
+        { email:email, 
+          passwordhash:password 
+        }, 
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true, 
+        }
+      );
+
+
+
+
+      if (response.data.message == "Login successful") {
+       
+
+        const userResponse = await axios.get(`${baseUrl}/auth/me`, { withCredentials: true });
+        if(userResponse){
+           onLoginSuccess();
+        }
+     
       } else {
-        const data = await response.json();
-        setError(data.message || "Incorrect password. Please try again.");
+        setError(response.data.message || "Incorrect password. Please try again.");
         setPassword("");
       }
     } catch (err) {

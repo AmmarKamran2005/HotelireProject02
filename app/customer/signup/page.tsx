@@ -10,6 +10,8 @@ import { Checkbox } from "@/components/ui/checkbox";
 import Select from "react-select";
 import countryList from "react-select-country-list";
 import { provinceToCities } from "@/lib/province-to-cities";
+import axios from 'axios';
+
 
 type UserType = "customer" | "owner";
 type AddressType = "canadian" | "international";
@@ -49,6 +51,20 @@ const nameSanitize = (s: string) =>
 const canadianAddressRegex = /^\d+\s+[A-Za-z0-9\s,'-]+$/;
 
 const PROVINCE_CITIES: Record<string, string[]> = provinceToCities;
+
+
+interface CanadianProvince {
+  canadian_province_id: number;
+  canadian_province_name: string;
+}
+interface CanadianCity {
+  canadian_city_id: number;
+  canadian_city_name: string;
+  canadian_province_id: number;
+}
+
+
+
 
 // Reference lists (kept small and fast)
 const CA_PROVINCES = [
@@ -140,10 +156,16 @@ const selectStyles = {
   }),
 };
 
+
+
+const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+
+
+
 export default function SignupPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  
+
   // Get pre-filled email and role from URL params (from auth flow)
   const prefilledEmail = searchParams.get("email") || "";
   const prefilledRole = searchParams.get("role") as UserType | null;
@@ -179,7 +201,12 @@ export default function SignupPage() {
     // phone and terms
     phoneNumber: "",
     agreeToTerms: false,
+    canadian_provinceid: "",
+    canadian_cityid: ""
   });
+
+
+
   const [errors, setErrors] = useState<SignupErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -326,7 +353,7 @@ export default function SignupPage() {
       "focus:border-[#3F2C77]",
       "focus:ring-[#3F2C77]",
       invalid &&
-        "border-red-500 ring-1 ring-red-500 focus:ring-red-500 focus:border-red-500",
+      "border-red-500 ring-1 ring-red-500 focus:ring-red-500 focus:border-red-500",
     ]
       .filter(Boolean)
       .join(" ");
@@ -334,6 +361,134 @@ export default function SignupPage() {
   // Helpers for react-select controlled values
   const toOption = (val: string | null) =>
     val ? { value: val, label: val } : null;
+
+
+
+
+
+
+
+
+
+
+
+  const [canadianProvinces, setCanadianProvinces] = useState<CanadianProvince[]>([]);
+  const [canadianCities, setCanadianCities] = useState<CanadianCity[]>([]);
+
+
+
+  useEffect(() => {
+    if (formData.canadian_provinceid) {
+      fetch(`${baseUrl}/auth/getCanadianCities/${formData.canadian_provinceid}`)//id
+        .then((res) => res.json())
+        .then((data) => setCanadianCities(data.cities || []))
+        .catch((err) => console.error("Error loading cities:", err));
+    }
+    console.log(canadianCities)
+
+  }, [formData.canadian_provinceid]);
+
+
+  useEffect(() => {
+    const fetchCanadianProvinces = async () => {
+      try {
+        const response = await fetch(`${baseUrl}/auth/getCanadianProvinces`)
+        const data = await response.json()
+        setCanadianProvinces(data.provinces || [])
+      } catch (error) {
+        console.error("Error fetching Canadian provinces:", error)
+      }
+    }
+
+    fetchCanadianProvinces()
+  }, [])
+
+
+
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!validateAll()) return
+
+    setIsSubmitting(true)
+
+    try {
+      const roleId = userType === "customer" ? 3 : 2
+
+      const payload: any = {
+        roleid: roleId,
+        firstname: formData.firstName,
+        lastname: formData.lastName,
+        email: formData.email,
+        passwordhash: formData.password,
+        address: formData.address,
+        postalcode: formData.postalCode,
+        phoneno: formData.phoneNumber,
+        profilepic: null,
+        isemailverified: (prefilledEmail) ? true : false,
+      }
+
+      if (userType === "owner" || (userType === "customer" && addressType === "canadian")) {
+
+
+        payload.canadian_provinceid = formData.canadian_provinceid;
+        payload.canadian_cityid = formData.canadian_cityid;
+        payload.international_country = null
+        payload.international_province = null
+        payload.international_city = null
+      } else {
+        payload.canadian_provinceid = null
+        payload.canadian_cityid = null
+        payload.international_country = formData.country
+        payload.international_province = formData.province
+        payload.international_city = formData.city
+      }
+
+      console.log(payload);
+
+      const response = await axios.post(`${baseUrl}/auth/signUp`, payload, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+          withCredentials: true,
+      });
+
+      const data = response.data;
+     
+
+
+
+
+      // Login successful, ab user data fetch karo /me se
+      const userResponse = await axios.get(`${baseUrl}/auth/me`, { withCredentials: true });
+   if(userResponse){
+      router.push("/customer/signup/thank-you")
+   }
+  
+
+
+
+
+    
+    } catch (error) {
+
+
+
+
+
+      console.log("Signup error:", error)
+      setErrors((prev) => ({
+        ...prev,
+        email: "Signup failed. Please reverify your email or use a different one.",
+      }))
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
+
+
+
 
   return (
     <div className="min-h-dvh flex flex-col md:flex-row">
@@ -358,6 +513,9 @@ export default function SignupPage() {
           </div>
         </div>
       </aside>
+
+
+
 
       {/* Right 60% form section */}
       <main className="flex-1 md:basis-3/5 flex items-center justify-center py-10 px-6 lg:px-12 bg-white">
@@ -425,15 +583,7 @@ export default function SignupPage() {
           <form
             noValidate
             className="space-y-4"
-            onSubmit={(e) => {
-              e.preventDefault();
-              if (!validateAll()) return;
-              setIsSubmitting(true);
-              setTimeout(() => {
-                setIsSubmitting(false);
-                router.push("/customer/signup/thank-you");
-              }, 900);
-            }}
+            onSubmit={handleSubmit}
           >
             {/* Full Name */}
             <div className="space-y-2">
@@ -588,7 +738,7 @@ export default function SignupPage() {
 
             {/* Address groups */}
             {userType === "owner" ||
-            (userType === "customer" && addressType === "canadian") ? (
+              (userType === "customer" && addressType === "canadian") ? (
               <>
                 {/* Canadian address */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -596,19 +746,68 @@ export default function SignupPage() {
                     <Label className="text-sm font-medium text-gray-700">
                       Province
                     </Label>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     <Select
                       instanceId="ca-province"
-                      options={CA_PROVINCES.map((p) => ({
-                        value: p,
-                        label: p,
+                      options={canadianProvinces.map((p) => ({
+                        value: String(p.canadian_province_id),  // 👈 province ID as string
+                        label: p.canadian_province_name,
                       }))}
-                      value={toOption(formData.province)}
-                      onChange={(opt: any) =>
-                        setField("province", opt?.value || "")
+
+                      value={
+                        canadianProvinces
+                          .map((p) => ({
+                            value: String(p.canadian_province_id),
+                            label: p.canadian_province_name,
+                          }))
+                          .find((opt) => opt.value === String(formData.canadian_provinceid)) || null
                       }
+
+                      // 👇 Update province ID in your formData
+                      onChange={(opt: any) => {
+
+                        setField("canadian_provinceid", opt ? parseInt(opt.value) : "")
+                        setField("province", opt.label || "")
+                      }
+                      }
+
                       styles={selectStyles}
                       placeholder="Select province"
                     />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     {errors.province && (
                       <p className="text-xs text-red-500 mt-1">
                         {errors.province}
@@ -619,23 +818,63 @@ export default function SignupPage() {
                     <Label className="text-sm font-medium text-gray-700">
                       City
                     </Label>
+
+
+
+
+
                     <Select
                       instanceId="ca-city"
-                      isDisabled={!formData.province}
-                      options={(PROVINCE_CITIES[formData.province] || []).map(
-                        (c) => ({ value: c, label: c }),
-                      )}
-                      value={toOption(formData.city)}
-                      onChange={(opt: any) =>
-                        setField("city", opt?.value || "")
+                      isDisabled={!formData.canadian_provinceid}
+                      options={(canadianCities || []).map((c) => ({
+                        value: String(c.canadian_city_id),  // 👈 store city ID as string
+                        label: c.canadian_city_name,        // 👈 display city name
+                      }))}
+
+                      // 👇 show correct selected city name
+                      value={
+                        (canadianCities || [])
+                          .map((c) => ({
+                            value: String(c.canadian_city_id),
+                            label: c.canadian_city_name,
+                          }))
+                          .find((opt) => opt.value === String(formData.canadian_cityid)) || null
                       }
+
+                      // 👇 update formData with city ID (number)
+                      onChange={(opt: any) => {
+
+                        {
+
+                          setField("canadian_cityid", opt ? parseInt(opt.value) : "")
+                          setField("city", opt ? opt.label : "")
+
+                        }
+
+                      }
+                      }
+
                       styles={selectStyles}
                       placeholder={
-                        formData.province
+                        formData.canadian_provinceid
                           ? "Select city"
                           : "Select province first"
                       }
                     />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     {errors.city && (
                       <p className="text-xs text-red-500 mt-1">{errors.city}</p>
                     )}
