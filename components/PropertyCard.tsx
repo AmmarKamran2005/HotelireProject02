@@ -53,14 +53,14 @@ export function PropertyCard({ property }: PropertyCardProps) {
                 </span>
               </div>
               <div className="flex flex-col gap-1">
-                <div className="relative w-[96.5px] h-[15.55px]">
+                {/* <div className="relative w-[96.5px] h-[15.55px]">
                   <Image
                     src={property.stars}
                     alt={`${property.rating} stars`}
                     fill
                     className="object-contain"
                   />
-                </div>
+                </div> */}
                 <span className="[font-family:'Inter',Helvetica] font-medium text-[#3f2c77] text-xs md:text-sm">
                   {property.reviews}
                 </span>

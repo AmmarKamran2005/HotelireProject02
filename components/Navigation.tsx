@@ -58,11 +58,11 @@ export function Navigation() {
             LIST YOUR PROPERTY
           </a>
         </Button>
-        <Button className="w-full sm:w-[160px] lg:w-[181px] h-[45px] lg:h-[55px] bg-[#febc11] rounded-[5px] [font-family:'Poppins',Helvetica] font-semibold text-[#3f2c77] text-xs lg:text-sm transition-all duration-200 hover:bg-[#febc11]/90 hover:scale-105 hover:shadow-lg">
+        {/* <Button className="w-full sm:w-[160px] lg:w-[181px] h-[45px] lg:h-[55px] bg-[#febc11] rounded-[5px] [font-family:'Poppins',Helvetica] font-semibold text-[#3f2c77] text-xs lg:text-sm transition-all duration-200 hover:bg-[#febc11]/90 hover:scale-105 hover:shadow-lg">
           <a href="/" rel="noopener noreferrer">
             DISCOVER MORE
           </a>
-        </Button>
+        </Button> */}
       </div>
     </nav>
   );

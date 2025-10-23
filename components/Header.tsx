@@ -12,15 +12,7 @@ export function Header() {
   return (
     <header className="w-full bg-[#3f2c77] h-12 flex items-center justify-between px-4 md:px-8 lg:px-[203px]">
       <div className="flex items-center gap-4">
-        {/* <Link href="/">
-          <Image
-            src="/figmaAssets/screenshot-2025-08-22-at-1-02-21-pm-1.png" 
-            alt="Hotel Logo"
-            width={111}
-            height={37}
-            className="w-[80px] h-[27px] md:w-[111px] md:h-[37px] bg-blend-multiply object-cover"
-          />
-        </Link> */}
+     
         <div className="hidden lg:flex items-center gap-4">
           <a
             href="https://facebook.com"
@@ -60,8 +52,8 @@ export function Header() {
       >
         info@hotelire.ca
       </a>
-      {/* <DropdownMenu>
-        <DropdownMenuTrigger asChild> */}
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
       <button
         className="flex items-center gap-2 cursor-pointer bg-transparent border-none outline-none"
         aria-label="User menu"
@@ -78,29 +70,30 @@ export function Header() {
             href="./customer/signin"
             prefetch={false}
             className="[font-family:'Poppins',Helvetica] font-medium text-[#FFFFFF] text-[12px] leading-[30px] cursor-pointer w-full"
-          >
-            Login
-          </Link>
+          > 
+            Muhammad Talha  
+          </Link> 
         </span>
       </button>
-      {/* </DropdownMenuTrigger> */}
-      {/* <DropdownMenuContent className="w-[131px] bg-[#f5f6fdf0] rounded-[0px_0px_4px_4px] p-4 shadow-md">
+      </DropdownMenuTrigger> 
+     <DropdownMenuContent className="w-[131px] bg-[#f5f6fdf0] rounded-[0px_0px_4px_4px] p-4 shadow-md">
           <DropdownMenuItem asChild>
             <Link
-              href="/account"
+              href="/admin or owner" //go to respective panels
               prefetch={false}
               className="[font-family:'Poppins',Helvetica] font-medium text-[#3f2c77] text-[11px] leading-[30px] cursor-pointer w-full"
             >
-              My Account
+              Admin Panel
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
             <Link
-              href="/trips"
+              href="/profile
+              "
               prefetch={false}
               className="[font-family:'Poppins',Helvetica] font-medium text-[#3f2c77] text-[11px] leading-[30px] cursor-pointer w-full"
             >
-              My Trips
+              My Profile
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
@@ -109,7 +102,7 @@ export function Header() {
             </button>
           </DropdownMenuItem>
         </DropdownMenuContent>
-      </DropdownMenu> */}
+      </DropdownMenu> 
     </header>
   );
 }
