@@ -430,6 +430,10 @@ export default function SignupPage() {
 
       if (userType === "owner" || (userType === "customer" && addressType === "canadian")) {
 
+        if(userType === "owner"){
+          payload.roleid = 2
+        }
+
 
         payload.canadian_provinceid = formData.canadian_provinceid;
         payload.canadian_cityid = formData.canadian_cityid;
@@ -439,12 +443,12 @@ export default function SignupPage() {
       } else {
         payload.canadian_provinceid = null
         payload.canadian_cityid = null
-        payload.international_country = formData.country
-        payload.international_province = formData.province
+        payload.international_country = formData.country?.label   //formData.country CONTAINS OBJ OF VALUE AND LABLE ALSO
+        payload.international_province = formData.state
         payload.international_city = formData.city
       }
 
-      console.log(payload);
+      console.log("HI",payload);
 
       const response = await axios.post(`${baseUrl}/auth/signUp`, payload, {
         headers: {
@@ -1010,29 +1014,29 @@ export default function SignupPage() {
                           {errors.province}
                         </p>
                       )}
-                    </div>
-                  ) : formData.country?.value === "US" ? (
-                    <div className="space-y-2">
-                      <Label className="text-sm font-medium text-gray-700">
-                        State
-                      </Label>
-                      <Select
-                        instanceId="intl-us-state"
-                        options={US_STATES.map((s) => ({ value: s, label: s }))}
-                        value={toOption(formData.state)}
-                        onChange={(opt: any) =>
-                          setField("state", opt?.value || "")
-                        }
-                        styles={selectStyles}
-                        placeholder="Select state"
-                      />
-                      {errors.state && (
-                        <p className="text-xs text-red-500 mt-1">
-                          {errors.state}
-                        </p>
-                      )}
-                    </div>
-                  ) : (
+                    </div>):
+                  // ) : formData.country?.value === "US" ? (
+                  //   <div className="space-y-2">
+                  //     <Label className="text-sm font-medium text-gray-700">
+                  //       State
+                  //     </Label>
+                  //     <Select
+                  //       instanceId="intl-us-state"
+                  //       options={US_STATES.map((s) => ({ value: s, label: s }))}
+                  //       value={toOption(formData.state)}
+                  //       onChange={(opt: any) =>
+                  //         setField("state", opt?.value || "")
+                  //       }
+                  //       styles={selectStyles}
+                  //       placeholder="Select state"
+                  //     />
+                  //     {errors.state && (
+                  //       <p className="text-xs text-red-500 mt-1">
+                  //         {errors.state}
+                  //       </p>
+                  //     )}
+                  //   </div>
+                  // ) : (
                     <div className="space-y-2">
                       <Label className="text-sm font-medium text-gray-700">
                         Province/State
@@ -1050,7 +1054,7 @@ export default function SignupPage() {
                         </p>
                       )}
                     </div>
-                  )}
+                  }
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">

@@ -11,6 +11,7 @@ import { OTPVerificationModal } from "@/components/OTPVerificationModal";
 import { PasswordModal } from "@/components/PasswordModal";
 import { ForgotPasswordModal } from "@/components/ForgotPasswordModal";
 import axios from 'axios';
+import { FcGoogle } from "react-icons/fc"; // Google icon
 
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -122,6 +123,18 @@ export default function SignInPage() {
     }
   };
 
+
+
+  const handleContinueWithGoogle = async() => {
+
+
+    
+    console.log("continue with google")
+  }
+
+
+
+
   return (
     <div className="min-h-dvh flex flex-col md:flex-row">
       {/* Left 40% image section */}
@@ -192,7 +205,7 @@ export default function SignInPage() {
                   setEmail(e.target.value);
                   setError("");
                 }}
-                onBlur={(e) => validateEmail(e.target.value)}
+                // onBlur={(e) => validateEmail(e.target.value)}
                 className="h-12 border-gray-300 focus:border-[#3F2C77] focus:ring-[#3F2C77]"
                 autoFocus
                 data-testid="input-email"
@@ -260,7 +273,7 @@ export default function SignInPage() {
             </span>
           </Button> */}
 
-          <div
+          {/* <div
             id="g_id_onload"
             data-client_id="YOUR_GOOGLE_CLIENT_ID"
             data-login_uri="https://your.domain/your_login_endpoint"
@@ -274,7 +287,17 @@ export default function SignInPage() {
             data-text="sign_in_with"
             data-shape="rectangular"
             data-logo_alignment="left"
-          ></div>
+          ></div> */}
+
+          <Button
+            variant="outline"
+            className="flex items-center justify-center gap-2 w-full" // <-- w-full added
+            onClick={handleContinueWithGoogle}
+          >
+            <FcGoogle className="w-6 h-6" /> {/* height & width fixed, scale properly */}
+            Continue with Google
+          </Button>
+
 
           {/* Footer */}
           <div className="pt-6 text-center space-y-2">

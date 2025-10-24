@@ -5,15 +5,6 @@ import { useEffect } from "react";
 export default function ThankYouPage() {
 
 
-useEffect(() => {
-     const storedUser = localStorage.getItem('user');
-
-      if (storedUser) {
-        const user = JSON.parse(storedUser);
-        console.log(user);
-      }
-}, [])
-
 
   return (
     <div className="min-h-dvh flex flex-col md:flex-row">

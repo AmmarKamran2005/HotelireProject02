@@ -50,11 +50,6 @@ export function PasswordModal({
     setError("");
 
     try {
-      // const response = await fetch("/api/login", {
-      //   method: "POST",
-      //   headers: { "Content-Type": "application/json" },
-      //   body: JSON.stringify({ email, password, rememberMe }),
-      // });
 
       const response = await axios.post(
         `${baseUrl}/auth/login`,
