@@ -1121,6 +1121,7 @@ export default function SignupPage() {
                     <Input
                       maxLength={10}
                       placeholder={
+                        
                         formData.country?.value === "CA"
                           ? "A1A 1A1"
                           : "ZIP / Postal"

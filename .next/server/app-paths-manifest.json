@@ -1,5 +1,7 @@
 {
-  "/customer/signin/page": "app/customer/signin/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
   "/customer/page": "app/customer/page.js",
-  "/page": "app/page.js"
+  "/customer/signin/page": "app/customer/signin/page.js",
+  "/page": "app/page.js",
+  "/owner/page": "app/owner/page.js"
 }
