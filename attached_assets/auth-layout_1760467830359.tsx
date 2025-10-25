@@ -11,7 +11,7 @@ type AuthLayoutProps = {
 export default function AuthLayout({
   children,
   imageSrc = "figmaAssets/Rectangle-334.png",
-  overlayColor = "#3F2C77",
+  overlayColor = "#59A5B2",
   leftHeadline = "Your perfect stay is one click away",
 }: AuthLayoutProps) {
   return (

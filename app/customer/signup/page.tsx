@@ -32,7 +32,7 @@ type SignupErrors = Partial<{
   agreeToTerms: string;
 }>;
 
-const BRAND = "#3F2C77";
+const BRAND = "#59A5B2";
 const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
 // Canadian postal format (A1A 1A1)
 const canadianPostalRegex = /^[A-Z]\d[A-Z][ ]?\d[A-Z]\d$/;
@@ -264,18 +264,19 @@ export default function SignupPage() {
         else if (String(value) !== formData.password.trim())
           msg = "Passwords do not match.";
         break;
-      case "address": {
+    case "address": {
         const v = String(value);
         if (!v) msg = "Address is Required.";
         else {
+          // Apply Canadian format only for Canadian address preference or Owner
           const isCanadianFlow =
             userType === "owner" ||
-            (userType === "customer" && addressType === "canadian") ||
-            (userType === "customer" &&
-              addressType === "international" &&
-              formData.country?.value === "CA");
+            (userType === "customer" && addressType === "canadian");
+          
           if (isCanadianFlow && !canadianAddressRegex.test(v)) {
             msg = "Use a Canadian Street Address (e.g., 123 Queen Street W).";
+          } else if (!isCanadianFlow && v.length < 6) {
+            msg = "Address must be at least 6 characters.";
           }
         }
         break;
@@ -288,7 +289,18 @@ export default function SignupPage() {
       case "postalCode": {
         const v = String(value).toUpperCase();
         if (!v) msg = "Postal code is required.";
-        else if (!canadianPostalRegex.test(v)) msg = "Format: A1A 1A1";
+        else {
+          // Apply Canadian format only for Canadian address preference or Owner
+          const isCanadianFlow =
+            userType === "owner" ||
+            (userType === "customer" && addressType === "canadian");
+          
+          if (isCanadianFlow && !canadianPostalRegex.test(v)) {
+            msg = "Format: A1A 1A1";
+          } else if (!isCanadianFlow && v.length < 4) {
+            msg = "Postal/ZIP code must be at least 4 characters.";
+          }
+        }
         break;
       }
       case "phoneNumber": {
@@ -350,8 +362,8 @@ export default function SignupPage() {
     [
       "h-12",
       "border-gray-300",
-      "focus:border-[#3F2C77]",
-      "focus:ring-[#3F2C77]",
+      "focus:border-[#59A5B2]",
+      "focus:ring-[#59A5B2]",
       invalid &&
       "border-red-500 ring-1 ring-red-500 focus:ring-red-500 focus:border-red-500",
     ]
@@ -507,7 +519,7 @@ export default function SignupPage() {
         />
         <div
           className="absolute inset-0"
-          style={{ backgroundColor: "#3F2C77", opacity: 0.65 }}
+          style={{ backgroundColor: "#59A5B2", opacity: 0.65 }}
         />
         <div className="absolute inset-0 flex items-center">
           <div className="px-8 lg:px-12">
@@ -528,9 +540,9 @@ export default function SignupPage() {
           <div className="space-y-3">
             <div className="flex items-center justify-center gap-3">
               <img
-                className="w-[141px] h-[94px]"
+                className="w-[auto] h-[54px]"
                 alt="Group"
-                src="/figmaAssets/group-370.png"
+                src="/figmaAssets/logo_orignal.png"
               />
             </div>
             <h1
@@ -707,7 +719,7 @@ export default function SignupPage() {
                           state: "",
                         }));
                       }}
-                      className="h-4 w-4 accent-[#3F2C77]"
+                      className="h-4 w-4 accent-[#59A5B2]"
                     />
                     <Label htmlFor="addr-ca" className="text-sm">
                       I prefer a Canadian address
@@ -730,7 +742,7 @@ export default function SignupPage() {
                           postalCode: "",
                         }));
                       }}
-                      className="h-4 w-4 accent-[#3F2C77]"
+                      className="h-4 w-4 accent-[#59A5B2]"
                     />
                     <Label htmlFor="addr-intl" className="text-sm">
                       I prefer an International address

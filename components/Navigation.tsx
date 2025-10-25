@@ -8,11 +8,11 @@ export function Navigation() {
     <nav className="w-full bg-white min-h-[80px] lg:h-[111px] flex flex-col lg:flex-row items-center justify-between px-4 md:px-8 lg:px-[203px] py-4 lg:py-0 gap-4 lg:gap-0">
       <Link href="/">
         <Image
-          src="/figmaAssets/group-370.png"
+          src="/figmaAssets/logo_orignal.png"
           alt="Hotelire"
           width={141}
           height={94}
-          className="w-[100px] h-[66px] lg:w-[141px] lg:h-[94px]"
+          className="w-[auto] h-[54px] lg:w-[auto] lg:h-[54px]"
         />
       </Link>
 
@@ -51,7 +51,7 @@ export function Navigation() {
       <div className="flex flex-col sm:flex-row gap-2 w-full lg:w-auto">
         <Button
           variant="outline"
-          className="w-full sm:w-[160px] lg:w-[181px] h-[45px] lg:h-[55px] bg-[#f5f6fd] rounded-[5px] border border-solid border-[#d9d9d9] [font-family:'Poppins',Helvetica] font-semibold text-[#3f2c77] text-xs lg:text-sm transition-all duration-200 hover:scale-105 hover:shadow-lg"
+          className="w-full sm:w-[160px] lg:w-[181px] h-[45px] lg:h-[55px] bg-[#f5f6fd] rounded-[5px] border border-solid border-[#d9d9d9] [font-family:'Poppins',Helvetica] font-semibold text-[#59A5B2] text-xs lg:text-sm transition-all duration-200 hover:shadow-lg"
           asChild
         >
           <a href="/customer/signin" rel="noopener noreferrer">

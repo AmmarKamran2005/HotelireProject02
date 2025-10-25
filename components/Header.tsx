@@ -54,7 +54,7 @@ export function Header() {
 
 
   return (
-    <header className="w-full bg-[#3f2c77] h-12 flex items-center justify-between px-4 md:px-8 lg:px-[203px]">
+    <header className="w-full bg-[#59A5B2] h-12 flex items-center justify-between px-4 md:px-8 lg:px-[203px]">
       <div className="flex items-center gap-4">
 
         <div className="hidden lg:flex items-center gap-4">
@@ -148,7 +148,7 @@ export function Header() {
             <Link
               href="/admin"
               prefetch={false}
-              className="[font-family:'Poppins',Helvetica] font-medium text-[#3f2c77] text-[11px] leading-[30px] cursor-pointer w-full"
+              className="[font-family:'Poppins',Helvetica] font-medium text-[#59A5B2] text-[11px] leading-[30px] cursor-pointer w-full"
             >
               Admin Panel
             </Link>
@@ -156,7 +156,7 @@ export function Header() {
             <Link
               href="/owner"
               prefetch={false}
-              className="[font-family:'Poppins',Helvetica] font-medium text-[#3f2c77] text-[11px] leading-[30px] cursor-pointer w-full"
+              className="[font-family:'Poppins',Helvetica] font-medium text-[#59A5B2] text-[11px] leading-[30px] cursor-pointer w-full"
             >
               Owner Panel
             </Link>
@@ -167,7 +167,7 @@ export function Header() {
           <Link
             href="/profile"
             prefetch={false}
-            className="[font-family:'Poppins',Helvetica] font-medium text-[#3f2c77] text-[11px] leading-[30px] cursor-pointer w-full"
+            className="[font-family:'Poppins',Helvetica] font-medium text-[#59A5B2] text-[11px] leading-[30px] cursor-pointer w-full"
           >
             My Profile
           </Link>
@@ -176,7 +176,7 @@ export function Header() {
         <DropdownMenuItem asChild>
           <button
             onClick={handleLogout}
-            className="[font-family:'Poppins',Helvetica] font-medium text-[#3f2c77] text-[11px] leading-[30px] cursor-pointer w-full text-left"
+            className="[font-family:'Poppins',Helvetica] font-medium text-[#59A5B2] text-[11px] leading-[30px] cursor-pointer w-full text-left"
           >
             Logout
           </button>

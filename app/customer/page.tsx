@@ -46,7 +46,7 @@ export default function CustomerHomePage() {
 
       {/* Explore Canada */}
       <section className="w-full bg-[#e3fdff] py-12 md:py-16 lg:py-[81px] px-4 md:px-8 lg:px-[203px]">
-        <h2 className="[font-family:'Poppins',Helvetica] font-bold text-[#3f2c77] text-[22px] md:text-[26px] lg:text-[28px] mb-3">
+        <h2 className="[font-family:'Poppins',Helvetica] font-bold text-[#59A5B2] text-[22px] md:text-[26px] lg:text-[28px] mb-3">
           Explore Canada
         </h2>
         <p className="[font-family:'Poppins',Helvetica] font-normal text-black text-base md:text-lg lg:text-xl mb-8 md:mb-10 lg:mb-[46px]">
@@ -62,7 +62,7 @@ export default function CustomerHomePage() {
 
       {/* Most Popular Hotels */}
       <section className="w-full py-12 md:py-16 lg:py-[82px] px-4 md:px-8 lg:px-[203px]">
-        <h2 className="[font-family:'Poppins',Helvetica] font-bold text-[#3f2c77] text-[22px] md:text-[26px] lg:text-[28px] mb-3">
+        <h2 className="[font-family:'Poppins',Helvetica] font-bold text-[#59A5B2] text-[22px] md:text-[26px] lg:text-[28px] mb-3">
           Most Popular Hotels
         </h2>
         <p className="[font-family:'Poppins',Helvetica] font-normal text-black text-base md:text-lg mb-8 md:mb-12 lg:mb-[54px]">
@@ -78,7 +78,7 @@ export default function CustomerHomePage() {
 
       {/* Offers */}
       <section className="w-full bg-[#eaffe6] py-12 md:py-16 lg:py-[102px] px-4 md:px-8 lg:px-[203px]">
-        <h2 className="[font-family:'Poppins',Helvetica] font-bold text-[#3f2c77] text-[22px] md:text-[26px] lg:text-[28px] mb-3">
+        <h2 className="[font-family:'Poppins',Helvetica] font-bold text-[#59A5B2] text-[22px] md:text-[26px] lg:text-[28px] mb-3">
           Offers
         </h2>
         <p className="[font-family:'Poppins',Helvetica] font-normal text-black text-base md:text-lg mb-8 md:mb-12 lg:mb-[54px]">
@@ -134,7 +134,7 @@ export default function CustomerHomePage() {
 
       {/* Unique Properties */}
       <section className="w-full py-12 md:py-16 lg:py-[57px] px-4 md:px-8 lg:px-[203px]">
-        <h2 className="[font-family:'Poppins',Helvetica] font-bold text-[#3f2c77] text-[22px] md:text-[26px] lg:text-[28px] mb-3">
+        <h2 className="[font-family:'Poppins',Helvetica] font-bold text-[#59A5B2] text-[22px] md:text-[26px] lg:text-[28px] mb-3">
           Stay at our top unique properties
         </h2>
         <p className="[font-family:'Poppins',Helvetica] font-normal text-black text-base md:text-lg lg:text-xl mb-8 md:mb-12 lg:mb-[54px]">
@@ -173,14 +173,14 @@ export default function CustomerHomePage() {
         />
 
         <div className="relative z-10 px-4 md:px-8 lg:ml-[622px] lg:mr-[203px] pt-[180px] md:pt-0">
-          <h2 className="[font-family:'Inter',Helvetica] font-bold text-[#3f2c77] text-[22px] md:text-[26px] mb-6 md:mb-[37px]">
+          <h2 className="[font-family:'Inter',Helvetica] font-bold text-[#59A5B2] text-[22px] md:text-[26px] mb-6 md:mb-[37px]">
             Grow Your Business with Hotelire
           </h2>
           <p className="[font-family:'Poppins',Helvetica] font-medium text-black text-base md:text-lg mb-6 md:mb-[32px] max-w-[601px]">
             Join Hotelire and showcase your property to travelers looking for
             their next memorable stay.
           </p>
-          <Button className="w-full md:w-[500px] lg:w-[612px] h-[55px] md:h-[68px] bg-[#3f2c77] rounded-[10px] [font-family:'Inter',Helvetica] font-bold text-white text-lg md:text-xl transition-all duration-200 hover:bg-[#2a2158] hover:scale-[1.02] hover:shadow-[0_4px_10px_rgba(0,0,0,0.15)]">
+          <Button className="w-full md:w-[500px] lg:w-[612px] h-[55px] md:h-[68px] bg-[#59A5B2] rounded-[10px] [font-family:'Inter',Helvetica] font-bold text-white text-lg md:text-xl transition-all duration-200 hover:bg-[#4c7e87] hover:scale-[1.02] hover:shadow-[0_4px_10px_rgba(0,0,0,0.15)]">
             SIGN UP AS PROPERTY OWNER
           </Button>
         </div>

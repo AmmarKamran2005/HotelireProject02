@@ -148,7 +148,7 @@ export default function SignInPage() {
         />
         <div
           className="absolute inset-0"
-          style={{ backgroundColor: "#3F2C77", opacity: 0.65 }}
+          style={{ backgroundColor: "#59A5B2", opacity: 0.65 }}
         />
         <div className="absolute inset-0 flex items-center">
           <div className="px-8 lg:px-12">
@@ -165,15 +165,15 @@ export default function SignInPage() {
           {/* Logo */}
           <div className="flex items-center justify-center gap-3">
             <img
-              className="w-[141px] h-[94px]"
+              className="w-[auto] h-[54px]"
               alt="Logo"
-              src="/figmaAssets/group-370.png"
+              src="/figmaAssets/logo_orignal.png"
             />
           </div>
 
           {/* Heading */}
           <div className="text-center space-y-2">
-            <h1 className="[font-family:'Poppins',Helvetica] text-2xl md:text-3xl font-bold text-[#3F2C77]">
+            <h1 className="[font-family:'Poppins',Helvetica] text-2xl md:text-3xl font-bold text-[#59A5B2]">
               Sign in or Create an Account
             </h1>
             <p className="[font-family:'Inter',Helvetica] text-gray-600 text-sm md:text-base">
@@ -206,7 +206,7 @@ export default function SignInPage() {
                   setError("");
                 }}
                 // onBlur={(e) => validateEmail(e.target.value)}
-                className="h-12 border-gray-300 focus:border-[#3F2C77] focus:ring-[#3F2C77]"
+                className="h-12 border-gray-300 focus:border-[#59A5B2] focus:ring-[#59A5B2]"
                 autoFocus
                 data-testid="input-email"
               />
@@ -223,7 +223,7 @@ export default function SignInPage() {
             <Button
               type="submit"
               disabled={isChecking}
-              className="w-full h-12 bg-[#3F2C77] hover:bg-[#2a2158] text-white transition-colors duration-200"
+              className="w-full h-12 bg-[#59A5B2] hover:bg-[#4c7e87] text-white transition-colors duration-200"
               data-testid="button-continue-email"
             >
               {isChecking ? "Checking..." : "Continue with Email"}
@@ -303,11 +303,11 @@ export default function SignInPage() {
           <div className="pt-6 text-center space-y-2">
             <p className="text-xs text-gray-600 [font-family:'Inter',Helvetica]">
               By signing in or creating an account, you agree with our{" "}
-              <a href="#" className="text-[#3F2C77] hover:underline">
+              <a href="#" className="text-[#59A5B2] hover:underline">
                 Terms & Conditions
               </a>{" "}
               and{" "}
-              <a href="#" className="text-[#3F2C77] hover:underline">
+              <a href="#" className="text-[#59A5B2] hover:underline">
                 Privacy Statement
               </a>
               .

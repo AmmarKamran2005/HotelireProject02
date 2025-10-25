@@ -32,14 +32,14 @@ export function HotelCard({ hotel }: HotelCardProps) {
               aria-label="Add to wishlist"
               data-testid={`button-wishlist-${hotel.id}`}
             >
-              <Heart className="w-4 h-4 text-[#3f2c77] transition-colors duration-200 hover:fill-[#3f2c77]" />
+              <Heart className="w-4 h-4 text-[#59A5B2] transition-colors duration-200 hover:fill-[#59A5B2]" />
             </button>
           </div>
           <div className="mt-4 flex-1 flex flex-col">
             <p className="[font-family:'Inter',Helvetica] font-medium text-[#5f5f5f] text-sm md:text-base mb-2 pl-3">
               {hotel.type}
             </p>
-            <h3 className="[font-family:'Inter',Helvetica] font-bold text-[#3f2c77] text-sm md:text-base mb-1 pl-3 min-h-[40px] md:min-h-[48px] transition-colors duration-200 group-hover:text-[#2a2158]">
+            <h3 className="[font-family:'Inter',Helvetica] font-bold text-[#59A5B2] text-sm md:text-base mb-1 pl-3 min-h-[40px] md:min-h-[48px] transition-colors duration-200 group-hover:text-[#2a2158]">
               {hotel.name}
             </h3>
             <p className="[font-family:'Inter',Helvetica] font-medium text-black text-sm md:text-base mb-4 pl-3">
@@ -47,7 +47,7 @@ export function HotelCard({ hotel }: HotelCardProps) {
             </p>
 
             <div className="flex items-start gap-4 mt-auto">
-              <div className="w-[55px] h-14 bg-[#3f2c77] rounded-[5px] flex items-center justify-center flex-shrink-0 transition-colors duration-200 group-hover:bg-[#2a2158]">
+              <div className="w-[55px] h-14 bg-[#59A5B2] rounded-[5px] flex items-center justify-center flex-shrink-0 transition-colors duration-200 group-hover:bg-[#2a2158]">
                 <span className="font-bold text-[#fff2f2] text-base [font-family:'Inter',Helvetica]">
                   {hotel.rating}
                 </span>
@@ -61,7 +61,7 @@ export function HotelCard({ hotel }: HotelCardProps) {
                     className="object-contain"
                   />
                 </div> */}
-                <span className="[font-family:'Inter',Helvetica] font-medium text-[#3f2c77] text-xs md:text-sm">
+                <span className="[font-family:'Inter',Helvetica] font-medium text-[#59A5B2] text-xs md:text-sm">
                   {hotel.reviews}
                 </span>
               </div>

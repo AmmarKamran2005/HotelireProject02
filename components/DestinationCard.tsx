@@ -23,7 +23,7 @@ export function DestinationCard({ destination }: DestinationCardProps) {
           <h3 className="[font-family:'Poppins',Helvetica] font-bold text-[#3554d1] text-lg md:text-xl mb-2 transition-colors duration-200 hover:text-[#2a3fa8]">
             {destination.name}
           </h3>
-          <p className="[font-family:'Poppins',Helvetica] font-normal text-[#3f2c77] text-sm">
+          <p className="[font-family:'Poppins',Helvetica] font-normal text-[#59A5B2] text-sm">
             {destination.properties}
           </p>
         </div>
